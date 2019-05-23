@@ -12,9 +12,9 @@
     ],
     "eslint.enable": true,
     "eslint.options": {
-        // "plugins": [
-        //     "html"
-        // ],
+        "plugins": [
+            "html"
+        ],
     },
     //为了符合eslint的两个空格间隔原则
     "editor.tabSize": 2,

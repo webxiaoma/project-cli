@@ -1,11 +1,17 @@
 {
-  "name": "project-cli",
+  "name": "@project/cli",
   "version": "1.0.0",
   "description": "项目脚手架",
   "main": "index.js",
+  "bin": {
+    "pro": "index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.20.0"
+  }
 }
