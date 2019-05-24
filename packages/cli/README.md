@@ -6,7 +6,9 @@
 
 
 
+## 环境要求
 
+- NodeJs 6.0+
 
 
 ## 相关连接
@@ -24,3 +26,8 @@
  - [Commander.js命令行框架](https://github.com/tj/commander.js)
  - [相关文章](http://blog.fens.me/nodejs-commander/)
  - [相关文章2](http://blog.gejiawen.com/2016/09/21/make-a-node-cli-program-by-commander-js/)
+
+
+### validate-npm-package-name
+
+- [validate-npm-package-name npm名称检测工具](https://github.com/npm/validate-npm-package-name)
