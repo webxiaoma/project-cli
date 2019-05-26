@@ -31,3 +31,9 @@
 ### validate-npm-package-name
 
 - [validate-npm-package-name npm名称检测工具](https://github.com/npm/validate-npm-package-name)
+
+
+
+### fs-extra
+
+- [fs-extra](https://github.com/jprichardson/node-fs-extra) 一个扩展`nodejs`的`fs`包

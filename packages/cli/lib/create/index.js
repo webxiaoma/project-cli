@@ -1,7 +1,8 @@
 
-const validateNpmName = require("validate-npm-package-name")
-const options = require('./options.js') 
-const initPreset = require('./setPreset.js')
+const opt = require('./options.js') 
+const detection = require('./detection.js')
+const initFrames = require('./frames/index.js'); 
+const installDeps = require('./installDeps.js')
 
 
 /**
@@ -9,23 +10,27 @@ const initPreset = require('./setPreset.js')
  * 
  */ 
 
-function createCmd(name,cmd){
-    console.log(name)
-    // console.log(cmd)
-    let result = validateNpmName(name)
-
-    // if(result.){
-
-    // }
-    initPreset(0)
-
-    console.log(options)
-
-    // console.log(result.errors[0])
+async function createCmd(dirName,cmd){
+    
 
 
+    opt.cmdOpt.dirName = dirName;
+
+    //检测环境，并创建目录
+    // await detection()
 
 
+    // 选择项目框架
+    let frameObj = await initFrames();
+
+    // 设置预设
+    await frameObj.initPreset()
+    // 初始化项目
+    await frameObj.initProject()
+    
+
+    // 安装项目
+    // installDeps()
 
 
 
