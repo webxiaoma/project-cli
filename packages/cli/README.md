@@ -37,3 +37,11 @@
 ### fs-extra
 
 - [fs-extra](https://github.com/jprichardson/node-fs-extra) 一个扩展`nodejs`的`fs`包
+
+
+
+### handlebar
+
+- [handlebar 一个JavaScript 语义模板库](https://handlebarsjs.com/)
+- [相关文章](https://www.cnblogs.com/yldf55/p/5147996.html)
+- [相关文章](https://segmentfault.com/a/1190000000342636)

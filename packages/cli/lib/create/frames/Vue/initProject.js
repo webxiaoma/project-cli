@@ -22,8 +22,10 @@ function download(){
 
 
 
+
 function initProject(){
    download()
+   console.log(11111)
 }
 
 
