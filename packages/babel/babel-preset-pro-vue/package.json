@@ -1,0 +1,26 @@
+{
+  "name": "@pro/babel-preset-pro-vue",
+  "version": "1.0.0",
+  "description": "a babel preset",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "preset",
+    "@pro/babel-preset-pro",
+    "babel-preset-pro",
+    "babel"
+  ],
+  "author": "webxiaoma",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-syntax-jsx": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
+    "@vue/babel-preset-jsx": "^1.0.0-beta.3"
+  }
+}

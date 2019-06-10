@@ -34,14 +34,6 @@ async function createCmd(dirName,cmd){
 
 
 
-
-
-
-
-
-
-
-
 }
 
 
