@@ -1,5 +1,5 @@
 {
-  "name": "@pro/vue-server",
+  "name": "@web-pro/vue-server",
   "version": "1.0.0",
   "description": "vue  serve",
   "main": "index.js",
