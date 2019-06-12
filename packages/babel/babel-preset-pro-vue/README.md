@@ -1,3 +1,3 @@
-# @pro/babel-preset-pro
+# @pro/babel-preset-pro-vue
 
 

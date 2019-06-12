@@ -1,7 +1,8 @@
 'use strict'
 process.env.NODE_ENV = "production";
 const config = require("./config.js")
-require("./utils").addEvn(config.public.addProcessEvn);
+const { addEvn, pathJoin } = require("../utils")
+addEvn(config.public.addProcessEvn) // 添加环境变量
 
 const path = require("path");
 const webpack = require('webpack');
@@ -14,7 +15,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin").default;
 const glob = require("glob-all");
-const baseWebpackConfig = require("./base.config.js");
+const baseWebpackConfig = require("./base.js");
 
 const referencedWebpackConfig = config.build.webpackConfig();
 
@@ -49,7 +50,7 @@ const proWebpackConfig = merge(
       }),
       new CopyWebpackPlugin([
         {
-          from: path.resolve(__dirname, "../public"),
+          from: pathJoin("./public"),
           to: "static/public",
           ignore: [".*"]
         }
@@ -160,5 +161,10 @@ if (config.build.isGzip){
 
 
 
+module.exports = ()=>{
+  webpack(proWebpackConfig, (err, stats) => {
+    console.log(stats)
 
-module.exports = proWebpackConfig;
+    // 记录结果...
+  })
+}

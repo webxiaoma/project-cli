@@ -3,7 +3,7 @@
 
 const path = require('path')
 const notifier = require('node-notifier')
-const config = require('../config.js');
+const currentExePath = process.cwd(); // 当前的执行路径
 
 /**
  * 添加环境变量
@@ -33,13 +33,20 @@ exports.log = function (){
 /**
  * 静态资源路径合并（图片，css,font,音频）
  */
-exports.assetsPath = function (_path) {
-   const assetsSubDirectory = process.env.NODE_ENV === 'production'
-     ? config.build.assetsDir
-     : config.dev.assetsDir
+// exports.assetsPath = function (_path) {
+//    const assetsSubDirectory = process.env.NODE_ENV === 'production'
+//      ? config.build.assetsDir
+//      : config.dev.assetsDir
  
-   return path.posix.join(assetsSubDirectory, _path)
-}
+//    return path.posix.join(assetsSubDirectory, _path)
+// }
+
+/**
+ * 文件路径处理,相对于当前执行路径
+ */
+ exports.pathJoin = function (pathStr = ""){
+    return path.join(currentExePath,pathStr);
+ }
 
 
 /**

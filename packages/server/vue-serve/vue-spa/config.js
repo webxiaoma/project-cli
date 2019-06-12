@@ -2,14 +2,14 @@
 const fs = require('fs');
 const path = require("path")
 const merge = require('webpack-merge')
+const {pathJoin } = require("../utils")
 const proConfig = {};
 
-let existsConfig = fs.existsSync("../pro.config.js")
+let existsConfig = fs.existsSync(pathJoin("pro.config.js"))
 
 if (existsConfig){
-    proConfig = require('../project.config.js');
+    proConfig = require(pathJoin("pro.config.js"));
 }
-
 module.exports = merge({
     // 开发环境下
     dev:{
@@ -18,7 +18,7 @@ module.exports = merge({
         /**
          * devServe配置 webpack-dev-server
          **/
-        autoOpenBower: false, // 自动打开浏览器
+        autoOpenBower: true, // 自动打开浏览器
         host:'localhost',
         port:'8099',
         useOverlay:true, // 错误全部覆盖显示
@@ -37,7 +37,7 @@ module.exports = merge({
         /**
          * 路径配置
          */
-        assetsRoot: path.resolve(__dirname, '../dist'), //
+        assetsRoot: pathJoin('dist'), //
         assetsDir:'static',
         assetsPublicPath:'./',
 
@@ -74,7 +74,7 @@ module.exports = merge({
     },
     // 公共配置
     public: { 
-        templateIndexHtml: path.resolve(__dirname, '../index.html'), // html模板
+        templateIndexHtml: pathJoin('index.html'), // html模板
         addProcessEvn:{ // 加入系统环境变量,已添加的系统变量不会再次被添加
             
         },
@@ -91,12 +91,8 @@ module.exports = merge({
             //    jquery:"jQuery"
             },
             cdn:{
-                js:[
-                   
-                ],
-                css:[
-
-                ]
+                js:[],
+                css:[]
             }
         },
 

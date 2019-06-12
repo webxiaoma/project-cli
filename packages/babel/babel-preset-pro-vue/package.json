@@ -8,8 +8,8 @@
   },
   "keywords": [
     "preset",
-    "@pro/babel-preset-pro",
-    "babel-preset-pro",
+    "@pro/babel-preset-pro-vue",
+    "babel-preset-pro-vue",
     "babel"
   ],
   "author": "webxiaoma",

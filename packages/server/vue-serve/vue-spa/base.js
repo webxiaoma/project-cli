@@ -6,17 +6,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const config = require('./config.js');
-const { assetsPath, loaderCss} = require("./utils")
+const {loaderCss, pathJoin} = require("../utils");
 
+let assetsPath = function (_path) {
+  const assetsSubDirectory = process.env.NODE_ENV === 'production'
+    ? config.build.assetsDir
+    : config.dev.assetsDir
 
+  return path.posix.join(assetsSubDirectory, _path)
+}
 const baseWebpackConfig = {
-  context: path.resolve(__dirname, "../"),
+  context: pathJoin(), // 基础路径
   entry: {
     app: "./src/main.js"
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "../dist"),
+    path: pathJoin("dist"),
     publicPath:
       process.env.NODE_ENV === "production"
         ? config.build.assetsPublicPath
@@ -26,7 +32,7 @@ const baseWebpackConfig = {
     modules: ["node_modules"],
     extensions: [".js", ".json", ".vue"],
     alias: {
-      "@": path.resolve(__dirname, "../src")
+      "@": pathJoin("src")
     }
   },
   // 排除打包库
@@ -50,7 +56,7 @@ const baseWebpackConfig = {
       {
         test: /\.js$/,
         use: ["babel-loader"],
-        include: [path.resolve(__dirname, "../src")]
+        include: [pathJoin("src")]
       },
       {
         test: /\.(png|jpe?g|gif)$/,
@@ -98,7 +104,7 @@ const baseWebpackConfig = {
 
 
 if(config.public.useCdn.open){
-  const HtmlExtendWebpackPlugin = require("./utils/html-extend-webpack-plugin");
+  const HtmlExtendWebpackPlugin = require("../utils/html-extend-webpack-plugin");
 
   baseWebpackConfig.plugins.push(
     new HtmlExtendWebpackPlugin(HtmlWebpackPlugin,{ // 扩展HtmlWebpackPlugin
