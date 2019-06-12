@@ -1,11 +1,22 @@
 {
-  "name": "@pro/html-extend-webpack-plugin",
-  "version": "1.0.0",
+  "name": "@web-pro/html-extend-webpack-plugin",
+  "version": "1.0.0-beta.1",
   "description": "a html-webpack-plugin extension",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "webxiaoma",
+  "keywords": [
+    "@web-pro",
+    "@web-pro/html-extend-webpack-plugin",
+    "html-extend-webpack-plugin",
+    "html-webpack-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webxiaoma/project-cli/tree/master/packages/webpack/html-extend-webpack-plugin"
   },
-  "author": "",
-  "license": "ISC"
+  "bugs": {
+    "url": "https://github.com/webxiaoma/project-cli/issues"
+  },
+  "homepage": "https://webxiaoma.com",
+  "license": "MIT"
 }
