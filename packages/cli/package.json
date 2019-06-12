@@ -1,5 +1,5 @@
 {
-  "name": "@project/cli",
+  "name": "@web-project/cli",
   "version": "1.0.0",
   "description": "项目脚手架",
   "main": "index.js",
