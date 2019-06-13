@@ -18,7 +18,7 @@ module.exports = merge({
         /**
          * devServe配置 webpack-dev-server
          **/
-        autoOpenBower: true, // 自动打开浏览器
+        autoOpenBower: false, // 自动打开浏览器
         host:'localhost',
         port:'8099',
         useOverlay:true, // 错误全部覆盖显示
@@ -55,7 +55,7 @@ module.exports = merge({
          */
             
         // 普通压缩(使用terser-webpack-plugin)
-        compress:false, // 是否启用普通压缩
+        compress:true, // 是否启用普通压缩
         delDubgger: true, // 打包时是否删除console 和 debugger  删除警告，注释
 
         //启用gzip压缩
@@ -80,7 +80,7 @@ module.exports = merge({
         },
 
         /**
-         * 代码优化
+         * 代码优化相关
          */
 
         // 使用cdn
@@ -94,6 +94,11 @@ module.exports = merge({
                 js:[],
                 css:[]
             }
+        },
+
+        // 使用dll
+        useDll:{
+
         },
 
 

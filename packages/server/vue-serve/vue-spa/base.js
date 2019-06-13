@@ -29,7 +29,7 @@ const baseWebpackConfig = {
         : config.dev.assetsPublicPath
   },
   resolve: {
-    modules: ["node_modules"],
+    // modules: [pathJoin("node_modules")],
     extensions: [".js", ".json", ".vue"],
     alias: {
       "@": pathJoin("src")
@@ -40,7 +40,7 @@ const baseWebpackConfig = {
   module: {
     rules: [
       // css loader
-      ...loaderCss( 
+      ...loaderCss(
         process.env.NODE_ENV !== "production"
           ? "vue-style-loader"
           : MiniCssExtractPlugin.loader,
@@ -50,8 +50,9 @@ const baseWebpackConfig = {
         test: /\.vue$/,
         loader: "vue-loader",
         options: {
-          loaders: {}
-        }
+          cacheDirectory: true // 开启缓存
+        },
+        include: [pathJoin("src")]
       },
       {
         test: /\.js$/,
@@ -64,7 +65,8 @@ const baseWebpackConfig = {
         options: {
           name: assetsPath("img/[name]-[hash:7].[ext]"),
           limit: 1024 // 1kb
-        }
+        },
+        include: [pathJoin("src")]
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
@@ -72,7 +74,8 @@ const baseWebpackConfig = {
         options: {
           name: assetsPath("media/[name].[hash:7]].[ext]"),
           limit: 10000 // 1kb
-        }
+        },
+        include: [pathJoin("src")]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -80,7 +83,8 @@ const baseWebpackConfig = {
         options: {
           name: assetsPath("fonts/[name].[hash:7]].[ext]"),
           limit: 10000 // 1kb
-        }
+        },
+        include: [pathJoin("src")]
       }
     ]
   },
@@ -97,14 +101,18 @@ const baseWebpackConfig = {
           }
         : false
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    // 当我们需要使用动态链接库时 首先会找到manifest文件 得到name值记录的全局变量名称 然后找到动态链接库文件 进行加载
+    new webpack.DllReferencePlugin({
+      manifest: require("./dist/vueAll.manifest.json")
+    })
   ]
 }; 
 
 
-
+// 是否使用cdn
 if(config.public.useCdn.open){
-  const HtmlExtendWebpackPlugin = require("../utils/html-extend-webpack-plugin");
+  const HtmlExtendWebpackPlugin = require("@web-pro/html-extend-webpack-plugin");
 
   baseWebpackConfig.plugins.push(
     new HtmlExtendWebpackPlugin(HtmlWebpackPlugin,{ // 扩展HtmlWebpackPlugin
@@ -112,9 +120,7 @@ if(config.public.useCdn.open){
       addCss:config.public.useCdn.cdn.css,
     }),
   )
-
 }
-
 
 
 const referencedWebpackConfig = config.public.webpackConfig()

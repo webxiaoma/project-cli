@@ -27,7 +27,6 @@ class InitVueServer {
     initConfig(){
        let config = require("./config.js");
        
-
     }
     
     // 开始启动编译
@@ -37,13 +36,12 @@ class InitVueServer {
 
     //开始打包
     build(){
-      require("./pro.js")()
+      // require("./pro.js")()
+      require("./dll.js")()
     }
 
     
 }
-
-
 
 
 

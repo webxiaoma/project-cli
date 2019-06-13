@@ -4,7 +4,6 @@ const program = require('commander'); // 命令行工具
 
 
 
-
 program
   .version('0.0.1')
   .option('-v, --version', 'output the version number')
@@ -19,7 +18,6 @@ program
   .option('-e, --entry <filePath>', 'entrance to the file')
   .option('-o, --out <filePath>', 'output file path')
   .action((name, cmd) => {
-    
     let InitVueServer = require('./vue-spa')
     new InitVueServer(cmd,"serve")
   });
@@ -36,7 +34,6 @@ program
     let InitVueServer = require('./vue-spa')
     new InitVueServer(cmd, "build")
   });
-
 
 
 /**

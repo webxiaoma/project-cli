@@ -4,8 +4,9 @@ const config = require("./config.js")
 const { addEvn, pathJoin } = require("../utils")
 addEvn(config.public.addProcessEvn) // 添加环境变量
 
-const path = require("path");
 const webpack = require('webpack');
+const chalk = require("chalk");
+const ora = require("ora");
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -17,9 +18,8 @@ const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin").defa
 const glob = require("glob-all");
 const baseWebpackConfig = require("./base.js");
 
-const referencedWebpackConfig = config.build.webpackConfig();
 
-const proWebpackConfig = merge(
+let proWebpackConfig = merge(
   baseWebpackConfig,
   {
     mode: "production",
@@ -54,7 +54,7 @@ const proWebpackConfig = merge(
           to: "static/public",
           ignore: [".*"]
         }
-      ]),
+      ])
       // new PurifyCSSPlugin({ // 还在使用旧api
       //   // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
       //   // Give paths to parse for rules. These should be absolute!
@@ -88,17 +88,15 @@ const proWebpackConfig = merge(
           }
         }
       },
-      runtimeChunk: true
+      runtimeChunk: true // 打包 runtime 代码
     }
   },
-  referencedWebpackConfig
 );
 
 
 /**
  * 是否进行普通压缩
  */
-
 if (config.build.compress){
     proWebpackConfig.optimization.minimizer.push(
         new OptimizeCssPlugin({ // css代码压缩
@@ -140,7 +138,7 @@ if (config.build.compress){
 }
 
 /**
- *  代码gzip压缩配置
+ *  是否进行gzip缩压缩 
  **/ 
 if (config.build.isGzip){
     const CompressionWebpackPlugin = require('compression-webpack-plugin');
@@ -160,11 +158,71 @@ if (config.build.isGzip){
 }
 
 
+const referencedWebpackConfig = config.build.webpackConfig();
+let webpackConfig = merge(proWebpackConfig,referencedWebpackConfig);
+
 
 module.exports = ()=>{
-  webpack(proWebpackConfig, (err, stats) => {
-    console.log(stats)
+    // loading
+    const spinner = ora({
+      text: `${chalk.gray("正在打包中，耐心等待...")} \n\n`,
+      color: "green"
+    }).start(); 
 
-    // 记录结果...
-  })
+    const compiler = webpack(webpackConfig);
+    compiler.run((err, stats) => {
+          if (err) {
+            console.error(err.stack || err);
+            if (err.details) {
+              console.error(err.details);
+            }
+            spinner.fail(`${chalk.red("打包出错 \n")}`);
+            return;
+          }
+
+          const info = stats.toJson();
+          if (stats.hasErrors()) {
+            console.error(info.errors);
+            spinner.fail(`${chalk.red("打包有错误 \n")}`);
+            return;
+          }
+
+         spinner.succeed(`${chalk.green("打包成功 \n")}`);
+
+         console.log(
+           stats.toString({
+             // 增加控制台颜色开关
+             chunks: false, // 使构建过程更静默无输出
+             colors: true,
+             modules: false,
+             // 添加构建日期和构建时间信息
+             builtAt: true,
+             // 添加 children 信息
+             children: false,
+             // 添加 chunk 信息（设置为 `false` 能允许较少的冗长输出）
+             chunks: false,
+             entrypoints: true, //  通过对应的 bundle 显示入口起点
+             warnings: false, // 关闭警告
+           })
+         );
+ 
+           
+          //  打印警告
+          if (stats.hasWarnings()) {
+            console.log(
+              `\n\n${chalk.magenta.bold(
+                "认真阅读打包时出现的警告："
+              )}\n`
+            );
+            info.warnings.forEach((warn,index)=>{
+              console.log(
+                chalk.yellowBright(
+                  `警告${index + 1}：` + warn + "\n"
+                )
+              );
+            })
+          }
+
+    });
+
 }

@@ -58,15 +58,17 @@ exports.loaderCss = function(preset,options={}){
 
    function createPreset(ary,regStr){
       let reg = eval(regStr);
-      let obj =  {
-         test: reg,
-         use: [],
-      }
+      let obj = {
+        test: reg,
+        use: [],
+        include: [path.join(currentExePath, "src")],
+        exclude: /node_modules/
+      };
       ary.forEach(name => {
          obj.use.push({
-            loader: `${name}-loader`,
-            options: Object.assign({},options[name])
-         })
+           loader: `${name}-loader`,
+           options: Object.assign({}, options[name]),
+         });
       });
 
       if (preset){

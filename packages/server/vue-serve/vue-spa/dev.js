@@ -5,15 +5,13 @@ const config = require("./config.js")
 const { addEvn, notifier, pathJoin } = require("../utils")
 addEvn(config.public.addProcessEvn) // 添加环境变量
 
-const path = require('path')
 const webpack = require('webpack')
 const webpackDevServer = require('webpack-dev-server')
 
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const merge = require('webpack-merge')
 const chalk = require('chalk')
-const progressBar = require('single-line-log')
-const lockIPHost = require("../../../lock-ip-host")
+const lockIPHost = require("../lock-ip-host")
 const baseWebpackConfig = require("./base.js")
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -47,12 +45,12 @@ const devServerOptions  = {
 module.exports = ()=>{
     // 端口检测
     lockIPHost.lockPort(config.dev.port).then(res => {
-        console.log(res)
         devWebpackConfig.plugins.push(
             new FriendlyErrorsPlugin({
                 compilationSuccessInfo: {
                     messages: [
-                        `项目已启动成功`,
+                        `Your application is running here:`,
+                        "",
                         `     localhost: ${chalk.green(`http://localhost:${res.canUsePort}`)}`,
                         `       network: ${chalk.green(`http://${res.ip}:${res.canUsePort}`)}`,
                     ],
@@ -66,6 +64,11 @@ module.exports = ()=>{
         )
 
         const compiler = webpack(devWebpackConfig);
+     
+        compiler.hooks.compile.tap("run", compilation => {
+              console.log(chalk.green("构建中，不要着急..."));
+        });
+
         webpackDevServer.addDevServerEntrypoints(devWebpackConfig, devServerOptions);
         const webpackServer = new webpackDevServer(compiler, devServerOptions);
         webpackServer.listen(res.canUsePort, "0.0.0.0");
