@@ -1,0 +1,40 @@
+{
+  "name": "vue-cli",
+  "version": "1.0.0",
+  "description": "vue  的脚手架",
+  "scripts": {
+    "start": "vue-server serve",
+    "build": "vue-server build",
+    "test": "node build/dev.config.js",
+    "serve": "vue-server serve",
+    "b": "vue-server build",
+    "dll": "vue-server dll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webxiaoma/vue-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webxiaoma/vue-cli/issues"
+  },
+  "homepage": "https://github.com/webxiaoma/vue-cli#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "jquery": "^3.4.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "vuex": "^3.1.1",
+    "web-calendar-js": "^1.1.1"
+  },
+  "devDependencies": {
+    "@web-pro/babel-preset-pro-vue": "1.0.0-beta.3",
+    "@web-pro/vue-server": "1.0.0-beta.3"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

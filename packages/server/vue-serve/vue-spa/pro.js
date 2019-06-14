@@ -19,79 +19,74 @@ const glob = require("glob-all");
 const baseWebpackConfig = require("./base.js");
 
 
-let proWebpackConfig = merge(
-  baseWebpackConfig,
-  {
-    mode: "production",
-    devtool:
-      config.build.useCssMap && config.build.useJsMap
-        ? config.build.devtool
-        : "",
-    output: {
-      filename: `${config.build.assetsDir}/js/[name]-[contenthash:7].js`,
-      // 为生成的chunk其名字
-      // chunkFilename: `${config.build.assetsDir}/js/[name]-chunk.js`,
-      path: config.build.assetsRoot,
-      publicPath:
-        process.env.NODE_ENV === "production"
-          ? config.build.assetsPublicPath
-          : config.dev.assetsPublicPath
-    },
-    plugins: [
-      new webpack.DefinePlugin({
-        "process.env": {
-          NODE_ENV: '"production"'
-        }
-      }),
-      new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin({
-        filename: `${config.build.assetsDir}/css/[name]-[hash:7].css`
-        // chunkFilename: '[name]-[contenthash:7].css'
-      }),
-      new CopyWebpackPlugin([
-        {
-          from: pathJoin("./public"),
-          to: "static/public",
-          ignore: [".*"]
-        }
-      ])
-      // new PurifyCSSPlugin({ // 还在使用旧api
-      //   // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
-      //   // Give paths to parse for rules. These should be absolute!
-      //   paths: glob.sync([
-      //     path.resolve(__dirname, "../*.html"), // 处理根目录下的html文件
-      //     path.resolve(__dirname, "../src/*.js"), // 处理src目录下的js文件
-      //     path.resolve(__dirname, "../src/*.vue") // 处理src目录下的Vue文件
-      //   ])
-      // }),
-
-      // tree shaking js https://github.com/vincentdchan/webpack-deep-scope-analysis-plugin
-      // new WebpackDeepScopeAnalysisPlugin()
-    ],
-    optimization: {
-      noEmitOnErrors: true, //跳过生成阶段(emitting phase)
-      minimizer: [], // 压缩配置
-      splitChunks: {
-        // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
-        chunks: "all",
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            priority: 1,
-            name: "vendor-chunk"
-          },
-          common: {
-            name: "common-chunk",
-            chunks: "all",
-            minSize: 10,
-            priority: 0
-          }
-        }
-      },
-      runtimeChunk: true // 打包 runtime 代码
-    }
+let proWebpackConfig = merge(baseWebpackConfig, {
+  mode: "production",
+  devtool:
+    config.build.useCssMap && config.build.useJsMap ? config.build.devtool : "",
+  output: {
+    filename: `${config.build.assetsDir}/js/[name]-[contenthash:7].js`,
+    // 为生成的chunk其名字
+    // chunkFilename: `${config.build.assetsDir}/js/[name]-chunk.js`,
+    path: config.build.assetsRoot,
+    publicPath:
+      process.env.NODE_ENV === "production"
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
   },
-);
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: `${config.build.assetsDir}/css/[name]-[hash:7].css`
+      // chunkFilename: '[name]-[contenthash:7].css'
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: pathJoin(config.build.staticDir),
+        to: `static/public`,
+        ignore: [".*"]
+      }
+    ])
+    // new PurifyCSSPlugin({ // 还在使用旧api
+    //   // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
+    //   // Give paths to parse for rules. These should be absolute!
+    //   paths: glob.sync([
+    //     path.resolve(__dirname, "../*.html"), // 处理根目录下的html文件
+    //     path.resolve(__dirname, "../src/*.js"), // 处理src目录下的js文件
+    //     path.resolve(__dirname, "../src/*.vue") // 处理src目录下的Vue文件
+    //   ])
+    // }),
+
+    // tree shaking js https://github.com/vincentdchan/webpack-deep-scope-analysis-plugin
+    // new WebpackDeepScopeAnalysisPlugin()
+  ],
+  optimization: {
+    noEmitOnErrors: true, //跳过生成阶段(emitting phase)
+    minimizer: [], // 压缩配置
+    splitChunks: {
+      // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: 1,
+          name: "vendor-chunk"
+        },
+        common: {
+          name: "common-chunk",
+          chunks: "all",
+          minSize: 10,
+          priority: 0
+        }
+      }
+    },
+    runtimeChunk: true // 打包 runtime 代码
+  }
+});
 
 
 /**
@@ -172,7 +167,7 @@ module.exports = ()=>{
     const compiler = webpack(webpackConfig);
     compiler.run((err, stats) => {
           if (err) {
-            console.error(err.stack || err);
+              console.error(err.stack || err);
             if (err.details) {
               console.error(err.details);
             }
@@ -180,14 +175,13 @@ module.exports = ()=>{
             return;
           }
 
-          const info = stats.toJson();
           if (stats.hasErrors()) {
-            console.error(info.errors);
-            spinner.fail(`${chalk.red("打包有错误 \n")}`);
-            return;
+             spinner.fail(`${chalk.red("打包出现错误 \n")}`);
+          } else if (stats.hasWarnings()) {
+             spinner.warn(`${chalk.yellowBright("打包出现警告 \n")}`);
+          } else {
+             spinner.succeed(`${chalk.green("打包成功 \n")}`);
           }
-
-         spinner.succeed(`${chalk.green("打包成功 \n")}`);
 
          console.log(
            stats.toString({
@@ -202,27 +196,9 @@ module.exports = ()=>{
              // 添加 chunk 信息（设置为 `false` 能允许较少的冗长输出）
              chunks: false,
              entrypoints: true, //  通过对应的 bundle 显示入口起点
-             warnings: false, // 关闭警告
            })
          );
  
-           
-          //  打印警告
-          if (stats.hasWarnings()) {
-            console.log(
-              `\n\n${chalk.magenta.bold(
-                "认真阅读打包时出现的警告："
-              )}\n`
-            );
-            info.warnings.forEach((warn,index)=>{
-              console.log(
-                chalk.yellowBright(
-                  `警告${index + 1}：` + warn + "\n"
-                )
-              );
-            })
-          }
-
     });
 
 }

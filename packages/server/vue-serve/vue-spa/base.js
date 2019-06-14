@@ -1,13 +1,16 @@
 'use strict'
 
 const path = require("path")
+const webpack = require("webpack")
 const merge = require('webpack-merge')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const config = require('./config.js');
-const {loaderCss, pathJoin} = require("../utils");
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const config = require('./config.js')
+const {loaderCss, pathJoin} = require("../utils")
+
+// 资源路径
 let assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsDir
@@ -15,6 +18,8 @@ let assetsPath = function (_path) {
 
   return path.posix.join(assetsSubDirectory, _path)
 }
+
+
 const baseWebpackConfig = {
   context: pathJoin(), // 基础路径
   entry: {
@@ -36,7 +41,7 @@ const baseWebpackConfig = {
     }
   },
   // 排除打包库
-  externals: config.public.useCdn.open ? config.public.useCdn.externals : {},
+  externals: config.public.externals,
   module: {
     rules: [
       // css loader
@@ -51,12 +56,16 @@ const baseWebpackConfig = {
         loader: "vue-loader",
         options: {
           cacheDirectory: true // 开启缓存
+          // loaders: {
+          //   js: "happypack/loader?id=babel"
+          // }
         },
         include: [pathJoin("src")]
       },
       {
         test: /\.js$/,
         use: ["babel-loader"],
+        // use: ["happypack/loader?id=babel"],
         include: [pathJoin("src")]
       },
       {
@@ -101,27 +110,68 @@ const baseWebpackConfig = {
           }
         : false
     }),
-    new VueLoaderPlugin(),
-    // 当我们需要使用动态链接库时 首先会找到manifest文件 得到name值记录的全局变量名称 然后找到动态链接库文件 进行加载
-    new webpack.DllReferencePlugin({
-      manifest: require("./dist/vueAll.manifest.json")
-    })
+    new VueLoaderPlugin()
   ]
 }; 
 
+/**
+ *  使用happypack
+ */
+// const  HappyPack = require("happypack");
+// const  os = require("os");
+//   // 创建进程池 HappyPack
+// let  happyThreadPool = HappyPack.ThreadPool({
+//   size: os.cpus().length-1
+// });
+// let  createHappyPlugin = (id, loaders) =>new HappyPack({
+//       id: id,
+//       loaders: loaders,
+//       threadPool: happyThreadPool,
+//       verbose: false,
+// });
 
-// 是否使用cdn
+// let loaderAry = [
+//   {
+//     id: "babel",
+//     loaders: ["babel-loader?cacheDirectory=true"]
+//   },
+//   {
+//     id: "vue",
+//     loaders: ["vue-loader"]
+//   }
+// ];
+
+// for(let len=loaderAry.length,i=len-1;i>=0;i--){
+//    baseWebpackConfig.plugins.push(
+//      createHappyPlugin(loaderAry[i].id, loaderAry[i].loaders)
+//    );
+// }
+
+
+/**
+ * 是否使用cdn
+ **/ 
 if(config.public.useCdn.open){
-  const HtmlExtendWebpackPlugin = require("@web-pro/html-extend-webpack-plugin");
-
-  baseWebpackConfig.plugins.push(
-    new HtmlExtendWebpackPlugin(HtmlWebpackPlugin,{ // 扩展HtmlWebpackPlugin
-      addJs:config.public.useCdn.cdn.js,
-      addCss:config.public.useCdn.cdn.css,
-    }),
-  )
+    const HtmlExtendWebpackPlugin = require("@web-pro/html-extend-webpack-plugin");
+    baseWebpackConfig.plugins.push(
+      new HtmlExtendWebpackPlugin(HtmlWebpackPlugin,{ // 扩展HtmlWebpackPlugin
+        addJs:config.public.useCdn.cdn.js,
+        addCss:config.public.useCdn.cdn.css,
+      }),
+    )
 }
 
+/**
+ * 是否使用dll
+ */
+if (config.public.useDll.open) {
+   baseWebpackConfig.plugins.unshift(
+     // 当我们需要使用动态链接库时 首先会找到manifest文件 得到name值记录的全局变量名称 然后找到动态链接库文件 进行加载
+     new webpack.DllReferencePlugin({
+       manifest: require(pathJoin("./vueDll/vueFamily-manifest.json"))
+     })
+   );
+}
 
 const referencedWebpackConfig = config.public.webpackConfig()
 

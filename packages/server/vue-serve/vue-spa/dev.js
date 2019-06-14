@@ -11,7 +11,7 @@ const webpackDevServer = require('webpack-dev-server')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const merge = require('webpack-merge')
 const chalk = require('chalk')
-const lockIPHost = require("../lock-ip-host")
+const lockIPHost = require("@web-pro/lock-ip-host");
 const baseWebpackConfig = require("./base.js")
 
 const devWebpackConfig = merge(baseWebpackConfig, {
