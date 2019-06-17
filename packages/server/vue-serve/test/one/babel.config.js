@@ -14,5 +14,11 @@ module.exports = {
       '@web-pro/babel-preset-pro-vue'
     ]
   ],
-  plugins: []
+  plugins: [
+    ['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
+  ]
 };

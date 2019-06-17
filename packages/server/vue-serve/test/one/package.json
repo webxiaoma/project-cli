@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/webxiaoma/vue-cli#readme",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "jquery": "^3.4.1",
+    "amfe-flexible": "^2.2.1",
+    "babel-polyfill": "^6.2 6.0",
+    "flyio": "^0.6.14",
+    "vant": "^1.6.17",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vuex": "^3.1.1",
@@ -30,7 +32,8 @@
   },
   "devDependencies": {
     "@web-pro/babel-preset-pro-vue": "1.0.0-beta.3",
-    "@web-pro/vue-server": "1.0.0-beta.3"
+    "@web-pro/vue-server": "1.0.0-beta.3",
+    "postcss-pxtorem": "^4.0.1"
   },
   "browserslist": [
     "> 1%",
