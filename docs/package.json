@@ -10,7 +10,7 @@
     "webxiaoma"
   ],
   "author": "webxiaoma",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "vuepress": "^1.0.1"
   }
