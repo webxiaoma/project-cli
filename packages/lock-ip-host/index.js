@@ -13,46 +13,30 @@ module.exports = {
       let IPv4 = this.getOwnIP().IPv4;
       let portMsg = {
         ip: IPv4,
-        canUsePort:port, // 可使用端口
+        canUsePort:null, // 可使用端口
       } 
       return new Promise((resolve,reject)=>{
-        let selectPort = (port) => {
-          let server = net.createServer().listen({
-            host: IPv4,
+        function portIsOccupied (port) {
+          // 创建服务并监听该端口
+          var server = net.createServer().listen({
+            host:'0.0.0.0',
             port,
-            exclusive: true
           })
-
           server.on('listening', function () { // 执行这块代码说明端口未被占用
-              server.close() // 关闭服务
-              let ipServer = net.createServer().listen({
-                host: 'localhost',
-                port,
-              })
-              ipServer.on("listening", () => {
-                portMsg.canUsePort = port;
-                ipServer.close(()=>{// 关闭服务
-                  resolve(portMsg)
-                }) 
-              })
-
-              ipServer.on("error", () => {
-                if (err.code === 'EADDRINUSE') { // 端口已经被使用
-                  port++;
-                  selectPort(port)
-                }
-              })
-
+            server.close()
+            portMsg.canUsePort = port;
+            resolve(portMsg) 
           })
 
           server.on('error', function (err) {
             if (err.code === 'EADDRINUSE') { // 端口已经被使用
               port++;
-              selectPort(port)
+              portIsOccupied(port)
             }
           })
         }
-        selectPort(port)
+        // 执行
+        portIsOccupied(port)
       })
      
   },

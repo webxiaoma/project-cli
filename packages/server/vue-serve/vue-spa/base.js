@@ -34,7 +34,7 @@ const baseWebpackConfig = {
         : config.dev.assetsPublicPath
   },
   resolve: {
-    // modules: [pathJoin("node_modules")],
+    modules: [pathJoin("node_modules")],
     extensions: [".js", ".json", ".vue"],
     alias: {
       "@": pathJoin("src")
@@ -55,17 +55,16 @@ const baseWebpackConfig = {
         test: /\.vue$/,
         loader: "vue-loader",
         options: {
-          cacheDirectory: true // 开启缓存
-          // loaders: {
-          //   js: "happypack/loader?id=babel"
-          // }
+          cacheDirectory: true, // 开启缓存
+          loaders: {
+            js: "happypack/loader?id=babel"
+          }
         },
         include: [pathJoin("src")]
       },
       {
         test: /\.js$/,
-        use: ["babel-loader"],
-        // use: ["happypack/loader?id=babel"],
+        use: ["happypack/loader?id=babel"],
         include: [pathJoin("src")]
       },
       {
@@ -73,7 +72,7 @@ const baseWebpackConfig = {
         loader: "url-loader",
         options: {
           name: assetsPath("img/[name]-[hash:7].[ext]"),
-          limit: 1024 // 1kb
+          limit: 1024, // 1kb
         },
         include: [pathJoin("src")]
       },
@@ -110,42 +109,42 @@ const baseWebpackConfig = {
           }
         : false
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
   ]
 }; 
 
 /**
  *  使用happypack
  */
-// const  HappyPack = require("happypack");
-// const  os = require("os");
-//   // 创建进程池 HappyPack
-// let  happyThreadPool = HappyPack.ThreadPool({
-//   size: os.cpus().length-1
-// });
-// let  createHappyPlugin = (id, loaders) =>new HappyPack({
-//       id: id,
-//       loaders: loaders,
-//       threadPool: happyThreadPool,
-//       verbose: false,
-// });
+const  HappyPack = require("happypack");
+const  os = require("os");
+  // 创建进程池 HappyPack
+let  happyThreadPool = HappyPack.ThreadPool({
+  size: os.cpus().length-1
+});
+let  createHappyPlugin = (id, loaders) =>new HappyPack({
+      id: id,
+      loaders: loaders,
+      threadPool: happyThreadPool,
+      verbose: false,
+});
 
-// let loaderAry = [
-//   {
-//     id: "babel",
-//     loaders: ["babel-loader?cacheDirectory=true"]
-//   },
-//   {
-//     id: "vue",
-//     loaders: ["vue-loader"]
-//   }
-// ];
+let loaderAry = [
+  {
+    id: "babel",
+    loaders: ["babel-loader?cacheDirectory=true"]
+  },
+  {
+    id: "vue",
+    loaders: ["vue-loader"]
+  }
+];
 
-// for(let len=loaderAry.length,i=len-1;i>=0;i--){
-//    baseWebpackConfig.plugins.push(
-//      createHappyPlugin(loaderAry[i].id, loaderAry[i].loaders)
-//    );
-// }
+for(let len=loaderAry.length,i=len-1;i>=0;i--){
+   baseWebpackConfig.plugins.push(
+     createHappyPlugin(loaderAry[i].id, loaderAry[i].loaders)
+   );
+}
 
 
 /**
@@ -168,11 +167,10 @@ if (config.public.useDll.open) {
    baseWebpackConfig.plugins.unshift(
      // 当我们需要使用动态链接库时 首先会找到manifest文件 得到name值记录的全局变量名称 然后找到动态链接库文件 进行加载
      new webpack.DllReferencePlugin({
-       manifest: require(pathJoin("./vueDll/vueFamily-manifest.json"))
-     })
+       manifest: require(pathJoin("./pro-dll/dll.manifest.json"))
+     }) 
    );
 }
 
-const referencedWebpackConfig = config.public.webpackConfig()
 
-module.exports = merge(baseWebpackConfig,referencedWebpackConfig);
+module.exports = baseWebpackConfig;

@@ -50,7 +50,7 @@ function createRequestConfig(api,{method, headers,patterns,data}){
     }
 
     return fly.request(url,data,{
-        baseURL:"api/gw",//请求基础路径
+        baseURL: process.env.NODE_ENV === 'production'? "http://223.203.132.82:8088/gw" :"api/gw",//请求基础路径
         method: methods.toLowerCase(),
         headers: header,
         timeout:5000 //超时设置为5s

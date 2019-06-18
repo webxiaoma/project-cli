@@ -61,8 +61,8 @@ exports.loaderCss = function(preset,options={}){
       let obj = {
         test: reg,
         use: [],
-        include: [path.join(currentExePath, "src")],
-        exclude: /node_modules/
+      //   include: [path.join(currentExePath, "src")],
+      //   exclude: /node_modules/
       };
       ary.forEach(name => {
          obj.use.push({

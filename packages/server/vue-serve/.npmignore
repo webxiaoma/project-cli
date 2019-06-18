@@ -2,13 +2,14 @@
 node_modules/
 /blogs/
 /dist/
-/test/
+selenium-debug.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /test/unit/coverage/
 /test/e2e/reports/
-selenium-debug.log
+/test/
+test.js
 
 # Editor directories and files
 .idea

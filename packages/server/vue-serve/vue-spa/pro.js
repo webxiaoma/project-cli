@@ -41,8 +41,8 @@ let proWebpackConfig = merge(baseWebpackConfig, {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: `${config.build.assetsDir}/css/[name]-[hash:7].css`
-      // chunkFilename: '[name]-[contenthash:7].css'
+      filename: `${config.build.assetsDir}/css/[name]-[hash:7].css`,
+      chunkFilename: `${config.build.assetsDir}/css/[name]-[contenthash:7].css`
     }),
     new CopyWebpackPlugin([
       {
@@ -71,20 +71,29 @@ let proWebpackConfig = merge(baseWebpackConfig, {
       // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
       chunks: "all",
       cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: 1,
-          name: "vendor-chunk"
-        },
-        common: {
-          name: "common-chunk",
+        vendor: { //node_modules内的依赖库
           chunks: "all",
-          minSize: 10,
-          priority: 0
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          minChunks: 1, //被不同entry引用次数(import),1次的话没必要提取
+          maxInitialRequests: 5,
+          minSize: 0,
+          priority: 100,
+        },
+        common: {// ‘src/js’ 下的js文件
+          chunks: "all",
+          test: /[\\/]src[\\/]js[\\/].*\.js/,//也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,  
+          name: "common", //生成文件名，依据output规则
+          minChunks: 2,
+          maxInitialRequests: 5,
+          minSize: 0,
+          priority: 1
         }
       }
     },
-    runtimeChunk: true // 打包 runtime 代码
+    runtimeChunk:{ // 打包 runtime 代码
+      name: 'runtime-app'
+    }
   }
 });
 
@@ -152,10 +161,8 @@ if (config.build.isGzip){
     )
 }
 
-
-const referencedWebpackConfig = config.build.webpackConfig();
-let webpackConfig = merge(proWebpackConfig,referencedWebpackConfig);
-
+// 执行webpackConfig, 外部可以配置webpackConfig
+config.public.webpackConfig(proWebpackConfig);
 
 module.exports = ()=>{
     // loading

@@ -13,16 +13,27 @@ module.exports = merge(
   {
     // 开发环境下
     dev: {
-      assetsPublicPath: "", // 公共路径
+      assetsPublicPath: "/", // 公共路径
       assetsDir: "static",
+      
+      
+
       /**
        * devServe配置 webpack-dev-server
        **/
       autoOpenBower: false, // 自动打开浏览器
-      host: "localhost",
-      port: 8099,
+      port: 8080,
       useOverlay: true, // 错误全部覆盖显示
       hot: true, // 模块热替换
+      proxyTable: {
+        "/api": {
+          target: "http://223.203.132.82:8088",
+          changeOrigin: true,
+          pathRewrite: {
+            "^/api": ""
+          }
+        },
+      },
       systemErrorNotifier: true, //是否开启系统错误通知
 
       /**
@@ -39,7 +50,7 @@ module.exports = merge(
       assetsRoot: pathJoin("dist"), //
       assetsDir: "static",
       assetsPublicPath: "./",
-      staticDir: "./public",
+      staticDir: "./public", // 公共资源目录
 
       /**
        * source-map 配置
@@ -61,13 +72,6 @@ module.exports = merge(
       //启用gzip压缩
       isGzip: false,
       gzipType: ["js", "css"],
-
-      /**
-       * webpack 配置
-       **/
-      webpackConfig() {
-        return {};
-      }
     },
     // 公共配置
     public: {
@@ -80,15 +84,13 @@ module.exports = merge(
        * 代码优化相关
        */
 
-      externals: {
-        // 排除打包库
-        //  vue:"vue",
+      externals: {// 排除打包库
       },
       useCdn: {
         // 使用cdn
-        open: false, // 开启
+        open: true, // 开启
         cdn: {
-          js: ["../vueFamily.dll.js"],
+          js: [],
           css: []
         }
       },
@@ -96,15 +98,16 @@ module.exports = merge(
         // 使用dll
         open: false,
         entry: {
-          vueDell: ["vue"]
+          vue: ["vue"],
+          vueRouter: ["vue-router"],
         }
       },
 
       /**
        * webpack 配置
        **/
-      webpackConfig() {
-        return {};
+      webpackConfig(config) {
+        // config webpack的真个配置
       }
     }
   },

@@ -36,11 +36,15 @@ const devServerOptions  = {
         warnings: false,
         errors: true
     }: false, 
-    hot: config.dev.hot, // 热模块替换功能
+    proxy: config.dev.proxyTable, // 代理
     compress: true, // 启用gzip压缩
     quiet: true, // 是否禁止输出编译信息
     historyApiFallback: true,
 }
+
+// 执行webpackConfig, 外部可以配置webpackConfig
+config.public.webpackConfig(devWebpackConfig);
+
 
 module.exports = ()=>{
     // 端口检测
@@ -50,7 +54,6 @@ module.exports = ()=>{
                 compilationSuccessInfo: {
                     messages: [
                         `Your application is running here:`,
-                        "",
                         `     localhost: ${chalk.green(`http://localhost:${res.canUsePort}`)}`,
                         `       network: ${chalk.green(`http://${res.ip}:${res.canUsePort}`)}`,
                     ],

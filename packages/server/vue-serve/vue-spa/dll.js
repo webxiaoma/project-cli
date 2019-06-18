@@ -1,5 +1,6 @@
 const config = require("./config.js");
 const webpack = require("webpack")
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path')
 const chalk = require("chalk")
 const ora = require("ora")
@@ -19,16 +20,17 @@ const dllWebpackConfig = {
   mode: "production",
   entry: config.public.useDll.entry,
   output: {
-    path: pathJoin("./vueDll"), // 动态链接库输出路径
+    path: pathJoin("./pro-dll"), // 动态链接库输出路径
     filename: "[name].dll.js", // 动态链接库输出的文件名称
     libraryTarget: "var", // 默认'var'形式赋给变量 b
-    library: "_dll_[name]" // 全局变量名称 导出库将被以var的形式赋给这个全局变量 通过这个变量获取到里面模块
+    library: "_pro_dll_[name]" // 全局变量名称 导出库将被以var的形式赋给这个全局变量 通过这个变量获取到里面模块
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.DllPlugin({
       // path 指定manifest文件的输出路径
-      path: path.join(pathJoin("./vueDll"), "[name]-manifest.json"),
-      name: "_dll_[name]" // 和library 一致，输出的manifest.json中的name值
+      path: path.join(pathJoin("./pro-dll"), "dll.manifest.json"),
+      name: "_pro_dll_[name]" // 和library 一致，输出的manifest.json中的name值
     })
   ]
 };
@@ -47,12 +49,12 @@ module.exports = ()=>{
        if (err.details) {
          console.error(err.details);
        }
-       spinner.fail(`${chalk.red("打包出错 \n")}`);
+       spinner.fail(`${chalk.red("打包dll出错 \n")}`);
        return;
      }
 
      if (!stats.hasErrors()) {
-       spinner.succeed(`${chalk.green("打包成功 \n")}`);
+       spinner.succeed(`${chalk.green("打包dll成功 \n")}`);
      }
      console.log(
        stats.toString({
