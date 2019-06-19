@@ -1,8 +1,17 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+// import VueRouter from 'vue-router'
 import Layout from '../views/Layout'
+let aaa = import('../views/Layout')
 
-Vue.use(Router)
+let Router;
+
+// 使用cdn
+try {
+  Router = VueRouter
+} catch (error) {
+  Router = require("vue-router").default
+  Vue.use(Router)
+}
 
 
 const route = new Router({

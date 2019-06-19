@@ -1,6 +1,6 @@
 {
   "name": "@web-pro/vue-server",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "description": "vue  serve",
   "main": "index.js",
   "bin": {
@@ -33,8 +33,8 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "@web-pro/html-extend-webpack-plugin": "^1.0.0-beta.1",
-    "@web-pro/lock-ip-host": "^1.0.0-beta.1",
+    "@web-pro/html-extend-webpack-plugin": "^1.0.0",
+    "@web-pro/lock-ip-host": "^1.0.0",
     "autoprefixer": "^9.5.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-imports-transform": "^0.1.0",

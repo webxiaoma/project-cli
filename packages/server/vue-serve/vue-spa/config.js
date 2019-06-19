@@ -16,23 +16,16 @@ module.exports = merge(
       assetsPublicPath: "/", // 公共路径
       assetsDir: "static",
       
-      
 
       /**
        * devServe配置 webpack-dev-server
        **/
-      autoOpenBower: false, // 自动打开浏览器
+      autoOpenBower: true, // 自动打开浏览器
       port: 8080,
       useOverlay: true, // 错误全部覆盖显示
       hot: true, // 模块热替换
-      proxyTable: {
-        "/api": {
-          target: "http://223.203.132.82:8088",
-          changeOrigin: true,
-          pathRewrite: {
-            "^/api": ""
-          }
-        },
+      proxyTable: { // 代理
+        
       },
       systemErrorNotifier: true, //是否开启系统错误通知
 
@@ -67,7 +60,7 @@ module.exports = merge(
 
       // 普通压缩(使用terser-webpack-plugin)
       compress: true, // 是否启用普通压缩
-      delDubgger: true, // 打包时是否删除console 和 debugger  删除警告，注释
+      delDubgger: false, // 打包时是否删除console 和 debugger  删除警告，注释
 
       //启用gzip压缩
       isGzip: false,
@@ -85,10 +78,12 @@ module.exports = merge(
        */
 
       externals: {// 排除打包库
+        // "vue":["Vue"],
+        // "vue-router": ['Router']
       },
       useCdn: {
         // 使用cdn
-        open: true, // 开启
+        open: false, // 开启
         cdn: {
           js: [],
           css: []
@@ -107,7 +102,7 @@ module.exports = merge(
        * webpack 配置
        **/
       webpackConfig(config) {
-        // config webpack的真个配置
+        // config webpack的配置
       }
     }
   },

@@ -171,7 +171,7 @@ module.exports = ()=>{
       color: "green"
     }).start(); 
 
-    const compiler = webpack(webpackConfig);
+    const compiler = webpack(proWebpackConfig);
     compiler.run((err, stats) => {
           if (err) {
               console.error(err.stack || err);
