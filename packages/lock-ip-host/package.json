@@ -1,6 +1,6 @@
 {
   "name": "@web-pro/lock-ip-host",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "description": "You can detect whether the port is occupied, and you can also detect IP",
   "main": "index.js",
   "keywords": [
