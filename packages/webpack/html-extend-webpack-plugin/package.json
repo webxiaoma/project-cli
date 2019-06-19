@@ -1,6 +1,6 @@
 {
   "name": "@web-pro/html-extend-webpack-plugin",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "description": "a html-webpack-plugin extension",
   "main": "index.js",
   "author": "webxiaoma",
