@@ -1,22 +1,27 @@
 {
-  "name": "@web-pro/html-extend-webpack-plugin",
-  "version": "1.0.0",
-  "description": "a html-webpack-plugin extension",
+  "name": "@web-pro/babel-preset-pro-vue",
+  "version": "1.0.1",
+  "description": "a babel preset of vue",
   "main": "index.js",
-  "author": "webxiaoma",
   "keywords": [
-    "@web-pro",
-    "@web-pro/html-extend-webpack-plugin",
-    "html-extend-webpack-plugin",
-    "html-webpack-plugin"
+    "preset",
+    "@web-pro/babel-preset-pro-vue",
+    "babel-preset-pro-vue",
+    "babel"
   ],
+  "author": "webxiaoma",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webxiaoma/project-cli/tree/master/packages/webpack/html-extend-webpack-plugin"
+    "url": "git+https://github.com/webxiaoma/project-cli/tree/master/packages/babel/babel-preset-pro-vue"
   },
   "bugs": {
     "url": "https://github.com/webxiaoma/project-cli/issues"
   },
   "homepage": "https://webxiaoma.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@babel/preset-env": "^7.4.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0"
+  },
+  "devDependencies": {}
 }
