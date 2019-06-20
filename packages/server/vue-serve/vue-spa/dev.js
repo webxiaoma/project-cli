@@ -7,7 +7,7 @@ addEvn(config.public.addProcessEvn) // 添加环境变量
 
 const webpack = require('webpack')
 const webpackDevServer = require('webpack-dev-server')
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const merge = require('webpack-merge')
 const chalk = require('chalk')
@@ -23,13 +23,21 @@ const devWebpackConfig = merge(baseWebpackConfig, {
                 NODE_ENV: '"development"'
             }
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new CopyWebpackPlugin([
+            {
+                from: pathJoin(config.dev.staticDir),
+                to: `public`,
+                ignore: [".*"]
+            }
+        ])
     ]
 })
 const devServerOptions  = {
     clientLogLevel: 'warning',
-    contentBase: pathJoin('./dist'),
+    contentBase: false,
     // publicPath:"/",
+    hot:config.dev.hot,
     open: config.dev.autoOpenBower, // 启动后是否自动打开默认浏览器
     //当出现编译器错误或警告时，在浏览器中显示全屏覆盖层,默认false
     overlay: config.dev.useOverlay?{

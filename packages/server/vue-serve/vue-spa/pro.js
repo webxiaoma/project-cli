@@ -27,11 +27,11 @@ let proWebpackConfig = merge(baseWebpackConfig, {
     filename: `${config.build.assetsDir}/js/[name]-[contenthash:7].js`,
     // 为生成的chunk其名字
     // chunkFilename: `${config.build.assetsDir}/js/[name]-chunk.js`,
-    path: config.build.assetsRoot,
+    path: pathJoin(config.build.assetsRoot),
     publicPath:
       process.env.NODE_ENV === "production"
-        ? config.build.assetsPublicPath
-        : config.dev.assetsPublicPath
+        ? config.build.baseUrl
+        : config.dev.baseUrl
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -47,7 +47,7 @@ let proWebpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: pathJoin(config.build.staticDir),
-        to: `static/public`,
+        to: `public`,
         ignore: [".*"]
       }
     ])

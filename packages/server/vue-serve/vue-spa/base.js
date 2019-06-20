@@ -30,8 +30,8 @@ const baseWebpackConfig = {
     path: pathJoin("dist"),
     publicPath:
       process.env.NODE_ENV === "production"
-        ? config.build.assetsPublicPath
-        : config.dev.assetsPublicPath
+        ? config.build.baseUrl
+        : config.dev.baseUrl
   },
   resolve: {
     modules: [pathJoin("node_modules")],
