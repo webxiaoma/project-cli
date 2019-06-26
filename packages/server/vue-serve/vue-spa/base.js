@@ -92,7 +92,6 @@ const baseWebpackConfig = {
           name: assetsPath("fonts/[name].[hash:7]].[ext]"),
           limit: 10000 // 1kb
         },
-        include: [pathJoin("src")]
       }
     ]
   },
@@ -100,7 +99,7 @@ const baseWebpackConfig = {
     new HtmlWebpackPlugin({
       //使用自带模板时，设置为false,使用自己的html模板是设置为true
       inject: true,
-      template: config.public.templateIndexHtml,
+      template: pathJoin(config.public.templateIndexHtml),
       minify: config.build.compress
         ? {
             removeComments: true, //去注释

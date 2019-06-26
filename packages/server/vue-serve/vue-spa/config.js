@@ -61,7 +61,7 @@ module.exports = merge(
 
       // 普通压缩(使用terser-webpack-plugin)
       compress: true, // 是否启用普通压缩
-      delDubgger: false, // 打包时是否删除console 和 debugger  删除警告，注释
+      delDubgger: true, // 打包时是否删除console 和 debugger  删除警告，注释
 
       //启用gzip压缩
       isGzip: false, // 是否开启gzip压缩，默认关闭
@@ -70,7 +70,7 @@ module.exports = merge(
 
     // *****************公共配置*****************
     public: {
-      templateIndexHtml: pathJoin("index.html"), // html模板
+      templateIndexHtml: "./index.html", // html模板
 
       // 加入系统环境变量,已添加的系统变量不会再次被添加
       addProcessEvn: {},
