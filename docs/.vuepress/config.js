@@ -1,21 +1,22 @@
 module.exports = {
     title:'马新想个人网站（webxiaoma）',
     head: [
-        // ["link", { rel: "icon", href: `/img/icon.ico` }],
+        ["link", { rel: "icon", href: `https://webxiaoma.com/img/manong.jpg` }],
     ], //被注入页面 HTML <head> 额外的标签
-    host: "localhost", //访问路径
-    port: "5555", //端口
     // base:'/', // 部署站点的基础路径
     dest: "./blogs", //输出目录
     serviceWorker: true, //缓存那些已访问过的页面的内容
     themeConfig: {  // 导航
-        logo:'/img/manong.jpg',
+        logo:'https://webxiaoma.com/img/manong.jpg',
         searchMaxSuggestions: 15, // 搜索设置数量
         nav: [  // 导航栏 使用了element 导航
-            { text: '首页', link: '/'},
+            { text: 'vue-server', link: '/vue-server/'},
         ],
         sidebar: {  // 侧边栏
-            
+            "/vue-server/":[
+               "",
+               "serv"
+            ]
         },
         sidebarDepth:2,// 侧边栏最大层级 最大只能为2
        // displayAllHeaders:true,  // 侧边栏所有链接全展开

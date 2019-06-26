@@ -1,50 +1,63 @@
 import Vue from 'vue'
-import "amfe-flexible";
 import App from './App.vue'
-import router from './router'
-// import store from './store'
-import { requestMethods } from "./api";
-import api from '@/api/apis'
+import VueLazyload from 'vue-lazyload'
+import { request} from "@/utils"
 
 
+Vue.use(VueLazyload)
+
+
+
+/**
+ * elementUl  https://element.eleme.cn/2.0/#/zh-CN/component/installation
+ */
 import {
+    RadioGroup,
+    RadioButton,
+    Form,
+    FormItem,
+    Select,
+    Option,
+    Input,
     Button,
-    Icon,
-    List,
-    Tabs,
-    Tab,
-    Search,
-    Toast,
-    Tabbar,
-    TabbarItem,
-    NavBar,
-    Swipe,
-    SwipeItem
-} from "vant";
+    Loading,
+    Message,
+    Notification,
+  } from 'element-ui'
+  
+  Vue.use(RadioGroup)
+  Vue.use(RadioButton)
+  Vue.use(Form)
+  Vue.use(FormItem)
+  Vue.use(Select)
+  Vue.use(Option)
+  Vue.use(Input)
+  Vue.use(Button)
+  Vue.use(Loading)
+  
+  Vue.config.productionTip = false;
+  Vue.prototype.$notify = Notification
+  Vue.prototype.$message = Message
+  Vue.prototype.request = request; // 交换请求
+  
+  
 
-Vue.use(Button)
-    .use(Icon)
-    .use(List)
-    .use(Tabs)
-    .use(Tab)
-    .use(Search)
-    .use(Toast)
-    .use(Tabbar)
-    .use(TabbarItem)
-    .use(NavBar)
-    .use(Swipe)
-    .use(SwipeItem)
-    .use(SwipeItem);
-
-
-Vue.prototype.toast = Toast;
+// Vue.prototype.toast = Toast;
 Vue.config.productionTip = false
-Vue.prototype.$req = requestMethods;
-Vue.prototype.$api = api;
+Vue.prototype.request = request; // 交换请求
+
+/**
+ * swiper  https://www.swiper.com.cn/
+ */
+import 'swiper/dist/css/swiper.css'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
+
+
 
 new Vue({
     el:"#app",
-    router,
+    // router,
     // store,
     render: h => h(App)
 })

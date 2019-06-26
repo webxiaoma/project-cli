@@ -19,7 +19,6 @@ let assetsPath = function (_path) {
   return path.posix.join(assetsSubDirectory, _path)
 }
 
-
 const baseWebpackConfig = {
   context: pathJoin(), // 基础路径
   entry: {
@@ -92,7 +91,6 @@ const baseWebpackConfig = {
           name: assetsPath("fonts/[name].[hash:7]].[ext]"),
           limit: 10000 // 1kb
         },
-        include: [pathJoin("src")]
       }
     ]
   },

@@ -3,7 +3,7 @@
         <div class="center" v-show="header">
             <div class="logo">
                 <router-link to="/">
-                  <img src="@/assets/logo.png" alt="">
+                  <img src="../assets/img/logo.png" alt="">
                 </router-link>
             </div>
             <div class="phone">
@@ -67,7 +67,6 @@
             font-size:16px;
             color:#E73948;
             padding-left:18px;
-            background: url('../assets/phone.png') no-repeat left center;
         }
     }
     .topImg{
