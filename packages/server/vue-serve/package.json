@@ -1,6 +1,10 @@
 {
   "name": "@web-pro/vue-server",
+<<<<<<< HEAD
   "version": "1.0.3",
+=======
+  "version": "1.0.2",
+>>>>>>> e580e90658e404c2b771388daf7a3b1737adee14
   "description": "vue  serve",
   "main": "index.js",
   "bin": {
@@ -55,7 +59,6 @@
     "mini-css-extract-plugin": "^0.7.0",
     "node-notifier": "^5.4.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "ora": "^3.4.0",
     "portfinder": "^1.0.20",
     "postcss-loader": "^3.0.0",
     "purify-css": "^1.2.5",
