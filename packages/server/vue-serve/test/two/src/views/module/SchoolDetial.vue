@@ -123,7 +123,6 @@ export default {
                 margin:5px;
                 .img{
                     width:100px;
-                    min-height:110px;
                     img{
                         width:100%;
                     }

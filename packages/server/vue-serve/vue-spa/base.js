@@ -73,23 +73,21 @@ const baseWebpackConfig = {
           name: assetsPath("img/[name]-[hash:7].[ext]"),
           limit: 1024, // 1kb
         },
-        include: [pathJoin("src")]
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: "url-loader",
         options: {
           name: assetsPath("media/[name].[hash:7]].[ext]"),
-          limit: 10000 // 1kb
+          limit: 10000 
         },
-        include: [pathJoin("src")]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: "url-loader",
         options: {
           name: assetsPath("fonts/[name].[hash:7]].[ext]"),
-          limit: 10000 // 1kb
+          limit: 10000 
         },
       }
     ]
@@ -98,7 +96,7 @@ const baseWebpackConfig = {
     new HtmlWebpackPlugin({
       //使用自带模板时，设置为false,使用自己的html模板是设置为true
       inject: true,
-      template: pathJoin(config.public.templateIndexHtml),
+      template: config.public.templateIndexHtml,
       minify: config.build.compress
         ? {
             removeComments: true, //去注释

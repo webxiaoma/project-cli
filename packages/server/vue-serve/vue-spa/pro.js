@@ -4,6 +4,7 @@ const config = require("./config.js")
 const { addEvn, pathJoin } = require("../utils")
 addEvn(config.public.addProcessEvn) // 添加环境变量
 
+const path = require("path");
 const webpack = require('webpack');
 const chalk = require("chalk");
 const ora = require("ora");
@@ -13,9 +14,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const PurifyCSSPlugin = require('purifycss-webpack');
-const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin").default;
-const glob = require("glob-all");
 const baseWebpackConfig = require("./base.js");
 
 
@@ -27,7 +25,7 @@ let proWebpackConfig = merge(baseWebpackConfig, {
     filename: `${config.build.assetsDir}/js/[name]-[contenthash:7].js`,
     // 为生成的chunk其名字
     // chunkFilename: `${config.build.assetsDir}/js/[name]-chunk.js`,
-    path: pathJoin(config.build.assetsRoot),
+    path: pathJoin(config.build.outputDir),
     publicPath:
       process.env.NODE_ENV === "production"
         ? config.build.baseUrl
@@ -50,19 +48,7 @@ let proWebpackConfig = merge(baseWebpackConfig, {
         to: `public`,
         ignore: [".*"]
       }
-    ])
-    // new PurifyCSSPlugin({ // 还在使用旧api
-    //   // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
-    //   // Give paths to parse for rules. These should be absolute!
-    //   paths: glob.sync([
-    //     path.resolve(__dirname, "../*.html"), // 处理根目录下的html文件
-    //     path.resolve(__dirname, "../src/*.js"), // 处理src目录下的js文件
-    //     path.resolve(__dirname, "../src/*.vue") // 处理src目录下的Vue文件
-    //   ])
-    // }),
-
-    // tree shaking js https://github.com/vincentdchan/webpack-deep-scope-analysis-plugin
-    // new WebpackDeepScopeAnalysisPlugin()
+    ]),
   ],
   optimization: {
     noEmitOnErrors: true, //跳过生成阶段(emitting phase)
