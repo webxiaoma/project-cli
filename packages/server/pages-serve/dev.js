@@ -2,9 +2,8 @@
 
 process.env.NODE_ENV = "development"
 const config = require("./config.js")
-const { addEvn, notifier, pathJoin } = require("../utils")
+const { addEvn, notifier, pathJoin } = require("./utils")
 addEvn(config.public.addProcessEvn) // 添加环境变量
-
 const webpack = require('webpack')
 const webpackDevServer = require('webpack-dev-server')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -13,6 +12,8 @@ const merge = require('webpack-merge')
 const chalk = require('chalk')
 const lockIPHost = require("@web-pro/lock-ip-host");
 const baseWebpackConfig = require("./base.js")
+const layout = require('./utils/layout.js')
+
 
 const evn = Object.assign({}, config.addProcessEvn, {
   NODE_ENV: '"development"'

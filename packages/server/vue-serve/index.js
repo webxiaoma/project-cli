@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 const program = require('commander'); // 命令行工具
-
+const version = require("")
 
 
 program
-  .version('1.0.1')
+  .version('1.0.3')
   .option('-v, --version', 'output the version number')
   .option('-h, --help', 'help')
 

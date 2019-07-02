@@ -9,7 +9,7 @@ const config = require('./config.js')
 const { loaderCss, pathJoin } = require("./utils");
 const layout = require('./utils/layout.js')
 
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+console.log(layout.entry())
 
 // 资源路径
 let assetsPath = function (_path) {
@@ -21,17 +21,19 @@ let assetsPath = function (_path) {
 }
 
 const baseWebpackConfig = {
-  mode:"none",
   context: pathJoin(), // 基础路径
-  entry: layout.entry(),
+  entry: {
+    app: './src/pages/index.js',
+    appa: './src/pages/index.js'
+  },
   output: {
-    filename: "[name]/js/index-[contenthash:7].js",
+    filename: "[name].js",
     path: pathJoin("dist"),
     publicPath:
-    process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === "production"
         ? config.build.baseUrl
         : config.dev.baseUrl
-  },  
+  },
   resolve: {
     modules: [pathJoin("node_modules")],
     extensions: [".js", ".json"],
@@ -43,44 +45,21 @@ const baseWebpackConfig = {
   externals: config.public.externals,
   module: {
     rules: [
-       // css loader
-      //  ...loaderCss("style-loader"),
-      ...loaderCss(
-        process.env.NODE_ENV !== "production"
-          ? "style-loader"
-          : MiniCssExtractPlugin.loader,
-        {}
-      ),
       {
         test: /\.js$/,
         use: "babel-loader",
         include: [pathJoin("src")]
       },
-      {
-        test: /\.(png|jpe?g|gif)$/,
-        loader: "url-loader",
-        options: {
-          name: assetsPath("img/[name]-[hash:7].[ext]"),
-          limit: 1024, // 1kb
-        },
-      },
-     
+
     ]
-  },  
+  },
   plugins: [
-    ...layout.htmlPlugins(),
-    // new CleanWebpackPlugin()
+
   ]
 };
 
 
 
-module.exports = baseWebpackConfig;
-// module.exports = ()=>{
-//   webpack(baseWebpackConfig, (err, stats) => {
-//     if (err || stats.hasErrors()) {
-//       // 在这里处理错误
-//     }
-//     // 处理完成
-//   });
-// };
+module.exports = ()=>{
+   
+};

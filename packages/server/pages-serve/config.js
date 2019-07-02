@@ -17,6 +17,7 @@ module.exports = merge(
        * @msg 路径配置
        */
       baseUrl: "/", // 公共基础路径
+      outputDir: "dist",  // 指定输出目录
       assetsDir: "static",   // 指定静态资源目录
       staticDir: "./public", // 指定公共资源目录（默认public）
 
@@ -60,7 +61,7 @@ module.exports = merge(
        */
 
       // 普通压缩(使用terser-webpack-plugin)
-      compress: true, // 是否启用普通压缩
+      compress: false, // 是否启用普通压缩
       delDubgger: true, // 打包时是否删除console 和 debugger  删除警告，注释
 
       //启用gzip压缩
