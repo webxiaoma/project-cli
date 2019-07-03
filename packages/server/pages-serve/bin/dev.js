@@ -2,8 +2,9 @@
 
 process.env.NODE_ENV = "development"
 const config = require("./config.js")
-const { addEvn, notifier, pathJoin } = require("./utils")
+const { addEvn, notifier, pathJoin } = require("../utils")
 addEvn(config.public.addProcessEvn) // 添加环境变量
+
 const webpack = require('webpack')
 const webpackDevServer = require('webpack-dev-server')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -12,7 +13,7 @@ const merge = require('webpack-merge')
 const chalk = require('chalk')
 const lockIPHost = require("@web-pro/lock-ip-host");
 const baseWebpackConfig = require("./base.js")
-const layout = require('./utils/layout.js')
+const layout = require('../utils/layout.js')
 
 
 const evn = Object.assign({}, config.addProcessEvn, {
@@ -27,15 +28,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       'process.env': evn,
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: pathJoin(config.dev.staticDir),
-        to: `public`,
-        ignore: [".*"]
-      }
-    ])
+    // new CopyWebpackPlugin([
+    //   {
+    //     from: pathJoin(config.dev.staticDir),
+    //     to: `public`,
+    //     ignore: [".*"]
+    //   }
+    // ])
   ]
 })
+
+
 const devServerOptions = {
   clientLogLevel: 'warning',
   contentBase: false,
@@ -48,9 +51,9 @@ const devServerOptions = {
     errors: true
   } : false,
   proxy: config.dev.proxyTable, // 代理
-  compress: true, // 启用gzip压缩
-  quiet: true, // 是否禁止输出编译信息
-  historyApiFallback: true,
+  // compress: true, // 启用gzip压缩
+  // quiet: true, // 是否禁止输出编译信息
+  // historyApiFallback: true,
 }
 
 // 执行webpackConfig, 外部可以配置webpackConfig
@@ -60,21 +63,22 @@ config.public.webpackConfig(devWebpackConfig);
 module.exports = () => {
   // 端口检测
   lockIPHost.lockPort(config.dev.port).then(res => {
+    console.log(res)
     devWebpackConfig.plugins.push(
-      new FriendlyErrorsPlugin({
-        compilationSuccessInfo: {
-          messages: [
-            `Your application is running here:`,
-            `     localhost: ${chalk.green(`http://localhost:${res.canUsePort}`)}`,
-            `       network: ${chalk.green(`http://${res.ip}:${res.canUsePort}`)}`,
-          ],
-          notes: ['可以尽情的写bug了...']
-        },
-        onErrors: config.dev.systemErrorNotifier ? function (severity, errors) {
-          notifier(severity, errors)
-        } : null,
-
-      })
+      //new FriendlyErrorsPlugin({
+          // compilationSuccessInfo: {
+          //   messages: [
+          //     `Your application is running here:`,
+          //     `     localhost: ${chalk.green(`http://localhost:${res.canUsePort}`)}`,
+          //     `       network: ${chalk.green(`http://${res.ip}:${res.canUsePort}`)}`,
+          //   ],
+          //   notes: ['可以尽情的写bug了...']
+          // },
+          // onErrors: config.dev.systemErrorNotifier ? function (severity, errors) {
+          //   console.log(errors)
+          //   notifier(severity, errors)
+          // } : null,
+     // })
     )
 
     const compiler = webpack(devWebpackConfig);

@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const merge = require('webpack-merge')
-const { pathJoin } = require("./utils")
+const { pathJoin } = require("../utils")
 let proConfig = {};
 
 let existsConfig = fs.existsSync(pathJoin("pro.config.js"))

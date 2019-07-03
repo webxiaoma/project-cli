@@ -1,7 +1,7 @@
 'use strict'
 process.env.NODE_ENV = "production";
 const config = require("./config.js")
-const { addEvn, pathJoin } = require("./utils")
+const { addEvn, pathJoin } = require("../utils")
 addEvn(config.public.addProcessEvn) // 添加环境变量
 
 const path = require("path");
@@ -15,7 +15,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const baseWebpackConfig = require("./base.js");
-const layout = require("./utils/layout.js")
+const layout = require("../utils/layout.js")
 
 let proWebpackConfig = merge(baseWebpackConfig, {
   mode: "none",
@@ -32,7 +32,7 @@ let proWebpackConfig = merge(baseWebpackConfig, {
   //       : config.dev.baseUrl
   // },
   plugins: [
-    ...layout.cssExtractPlugin(), // css分离
+    ...layout.getMiniCssExtractPlugin(), // css分离
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: '"production"'

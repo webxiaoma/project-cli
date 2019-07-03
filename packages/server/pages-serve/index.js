@@ -16,7 +16,7 @@ program
   .command('serve [name]')
   .description('run setup commands for all envs')
   .action((name, cmd) => {
-    let InitPagesServer = require('./dev.js')
+    let InitPagesServer = require('./bin/dev.js')
     InitPagesServer(cmd, "serve")
   });
 
@@ -27,7 +27,7 @@ program
   .command('build [name]')
   .description('run setup commands for all envs')
   .action((name, cmd) => {
-    let InitBuildServer = require('./pro.js')
+    let InitBuildServer = require('./bin/pro.js')
     InitBuildServer(cmd, "build")
   });
 

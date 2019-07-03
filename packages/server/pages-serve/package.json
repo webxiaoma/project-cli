@@ -16,6 +16,8 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@web-pro/lock-ip-host": "^1.0.0",
+    "art-template": "^4.13.2",
+    "art-template-loader": "^1.4.3",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
     "chalk": "^2.4.2",

@@ -6,8 +6,8 @@ const merge = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = require('./config.js')
-const { loaderCss, pathJoin } = require("./utils");
-const layout = require('./utils/layout.js')
+const { loaderCss, pathJoin } = require("../utils");
+const layout = require('../utils/layout.js')
 
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
@@ -23,7 +23,7 @@ let assetsPath = function (_path) {
 const baseWebpackConfig = {
   mode:"none",
   context: pathJoin(), // 基础路径
-  entry: layout.entry(),
+  entry: layout.getEntry(),
   output: {
     filename: "[name]/js/index-[contenthash:7].js",
     path: pathJoin("dist"),
@@ -44,13 +44,20 @@ const baseWebpackConfig = {
   module: {
     rules: [
        // css loader
-      //  ...loaderCss("style-loader"),
       ...loaderCss(
         process.env.NODE_ENV !== "production"
           ? "style-loader"
           : MiniCssExtractPlugin.loader,
         {}
       ),
+      {
+        test: /\.art$/, 
+        loader: "art-template-loader",
+        options: {
+            // art-template options (if necessary)
+            // @see https://github.com/aui/art-template
+        }
+      },
       {
         test: /\.js$/,
         use: "babel-loader",
@@ -68,7 +75,7 @@ const baseWebpackConfig = {
     ]
   },  
   plugins: [
-    ...layout.htmlPlugins(),
+    ...layout.getHtmlWebpackPlugin(),
     // new CleanWebpackPlugin()
   ]
 };
