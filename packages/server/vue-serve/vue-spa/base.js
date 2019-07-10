@@ -74,7 +74,7 @@ const baseWebpackConfig = {
           limit: 1024, // 1kb
         },
       },
-      {
+      { 
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: "url-loader",
         options: {
@@ -140,7 +140,7 @@ for(let len=loaderAry.length,i=len-1;i>=0;i--){
    baseWebpackConfig.plugins.push(
      createHappyPlugin(loaderAry[i].id, loaderAry[i].loaders)
    );
-}
+} 
 
 
 /**
