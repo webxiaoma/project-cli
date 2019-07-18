@@ -7,7 +7,7 @@
                   <img src="./assets/m-img/logo.png" class="mobileLogo" alt="龙文logo" v-else>
               </div>
               <div class="phone">
-                  咨询电话：<b>400-900-6656</b>
+                  咨询电话：<b>400-90122-121asdads2</b>
               </div>
           </div>
       </div>
@@ -25,7 +25,7 @@
          <div class="screenTwo">
              <div class="center">
                  <div class="title">
-                   <p>龙文教育 · 因材施教</p>
+                   <p>龙文教育111因材施教</p>
                    <p class="bottomLine"></p>
                  </div>
                  <div class="dataList">

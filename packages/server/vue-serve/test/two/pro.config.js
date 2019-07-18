@@ -3,6 +3,7 @@ const IP_PROXY = 'http://www.longwenedu.com/' // 线上接口
 module.exports = {
     // 开发环境下
     dev: {
+        hot: true,
         proxyTable: {
             "/api": {
                 target: IP_PROXY,
@@ -20,7 +21,7 @@ module.exports = {
     },
     public:{
         externals: {// 排除打包库
-            "vue":["Vue"],
+            // "vue":["Vue"],
         },
         webpackConfig(config) {
             // config webpack的配置

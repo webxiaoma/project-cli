@@ -65,6 +65,7 @@ export default {
                 agentType:this.$root.isPc?1:2, // 1.pc 端 2,手机端
                 resourceType:"",
             }, 
+            subjectShow:true,
             subject:JSON.parse(JSON.stringify(formData.subject)),
             banji:JSON.parse(JSON.stringify(formData.banji)),
             city:JSON.parse(JSON.stringify(formData.city)),

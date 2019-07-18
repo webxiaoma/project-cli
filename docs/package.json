@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx vuepress dev ."
+    "start": "npx vuepress dev .",
+    "build":"npx vuepress build ."
   },
   "keywords": [
     "webxiaoma"

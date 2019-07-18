@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const program = require('commander'); // 命令行工具
-const version = require("")
 
 
 program

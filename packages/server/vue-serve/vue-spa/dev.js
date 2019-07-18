@@ -18,11 +18,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     mode: "development",
     devtool: config.dev.devtool,
     plugins:[
-        new webpack.DefinePlugin({
+        new webpack.DefinePlugin({ // 注入环境变量
             'process.env': {
                 NODE_ENV: '"development"'
             }
         }),
+        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new CopyWebpackPlugin([
             {
@@ -38,6 +39,7 @@ const devServerOptions  = {
     contentBase: false,
     // publicPath:"/",
     hot:config.dev.hot,
+    // inline: true,
     open: config.dev.autoOpenBower, // 启动后是否自动打开默认浏览器
     //当出现编译器错误或警告时，在浏览器中显示全屏覆盖层,默认false
     overlay: config.dev.useOverlay?{
