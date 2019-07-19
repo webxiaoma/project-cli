@@ -4,7 +4,6 @@ const config = require("./config.js")
 const { addEvn, pathJoin } = require("../utils")
 addEvn(config.public.addProcessEvn) // 添加环境变量
 
-const path = require("path");
 const webpack = require('webpack');
 const chalk = require("chalk");
 const ora = require("ora");

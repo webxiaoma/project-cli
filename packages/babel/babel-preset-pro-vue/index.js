@@ -4,11 +4,21 @@
 
 module.exports = (context, options = {}) => {
 
-  let envOpt = options["@babel/preset-env"] || {};
+  const presets = [];
+  const plugins = [];
 
-  let presets = [['@babel/preset-env', envOpt]];
-  let plugins = [];
+  // 加入@babel/preset-env
+  presets.push(
+    [require('@babel/preset-env')]
+  )
   
+
+  // 支持vue jsx语法
+
+  plugins.push(
+    [require("babel-plugin-transform-vue-jsx")]
+  )
+
   return {
     presets,
     plugins

@@ -3,11 +3,11 @@
       <div class="mayHeader">
           <div class="center">
               <div class="logo">
-                  <img src="./assets/img/logo.png" alt="龙文logo" v-if="isPc">
-                  <img src="./assets/m-img/logo.png" class="mobileLogo" alt="龙文logo" v-else>
+                  <img src="@/assets/img/logo.png" alt="龙文logo" v-if="isPc">
+                  <img src="@/assets/m-img/logo.png" class="mobileLogo" alt="龙文logo" v-else>
               </div>
               <div class="phone">
-                  咨询电话：<b>400-90122-121asdads2</b>
+                  咨询电话：<b>400-90122-1213223</b>
               </div>
           </div>
       </div>
@@ -19,7 +19,6 @@
                   <Pc-Form></Pc-Form>
               </div>
            </div>
-         
          </div>
          <!-- 第二屏 -->
          <div class="screenTwo">
@@ -107,7 +106,6 @@
                                </div>
                           </swiper-slide>
                       </swiper>
-                    
                  </div>
                  <!-- pc -->
                  <div class="lineThreeTtem" v-if="isPc">
@@ -1057,12 +1055,15 @@
   </div>
 </template>
 <script>
+
+
 import {PcBtn,PcFooter,PcForm,MobileFooter,Float,Map,FloatForm} from './components'
+import text from './components/text.js'
 export default {
   data(){
     let slef = this;
     return {
-        imgBaseUrl:process.env.NODE_ENV === 'production'?"/actives":"",
+        imgBaseUrl:process.env.NODE_ENV === 'production'?"./":"",
         isShowFloat:true,
         isShowFloatForm:false,
         isPc:false,
@@ -1183,7 +1184,7 @@ export default {
 </script>
 
 
-<style lang="less">
+<style lang="less"> 
 @import "./theme/base.css";
 
 @media screen and (max-width: 500px) {

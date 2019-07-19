@@ -31,17 +31,6 @@ exports.log = function (){
 
 
 /**
- * 静态资源路径合并（图片，css,font,音频）
- */
-// exports.assetsPath = function (_path) {
-//    const assetsSubDirectory = process.env.NODE_ENV === 'production'
-//      ? config.build.assetsDir
-//      : config.dev.assetsDir
- 
-//    return path.posix.join(assetsSubDirectory, _path)
-// }
-
-/**
  * 文件路径处理,相对于当前执行路径
  */
  exports.pathJoin = function (pathStr = ""){
@@ -53,7 +42,6 @@ exports.log = function (){
  * 处理css预处理器 loader
  */
 exports.loaderCss = function(preset,options={}){
-   
    let loader = [];
 
    function createPreset(ary,regStr){
@@ -99,9 +87,7 @@ exports.loaderCss = function(preset,options={}){
  * 系统通知
  */
 exports.notifier = (severity, errors) => {
-
       if (severity !== 'error') return
-
       const error = errors[0]
       const filename = error.file && error.file.split('!').pop().split("?")[0]
   

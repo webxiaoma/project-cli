@@ -10,7 +10,7 @@
       <h1>项目工程化</h1>
 
       <h2 class="description">
-         project-cli
+         Project-cli
       </h2>
 
       <p

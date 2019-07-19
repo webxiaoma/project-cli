@@ -1,6 +1,6 @@
 {
   "name": "@web-pro/babel-preset-pro-vue",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a babel preset of vue",
   "main": "index.js",
   "keywords": [
@@ -12,19 +12,19 @@
   "author": "webxiaoma",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webxiaoma/project-cli/tree/master/packages/babel/babel-preset-pro-vue"
+    "url": "https://github.com/webxiaoma/project-cli/tree/master/packages/babel/babel-preset-pro-vue"
   },
   "bugs": {
     "url": "https://github.com/webxiaoma/project-cli/issues"
   },
-  "homepage": "https://webxiaoma.com",
+  "homepage": "https://webxiaoma.github.io/project-cli/",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.0.0-0",
-    "@babel/preset-env": "^7.4.5"
+    "@babel/preset-env": "^7.5.5",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0"
   },
-  "devDependencies": {
-    "@babel/core": "^7.0.0-0",
-    "@babel/preset-env": "^7.5.5"
-  }
+  "devDependencies": {}
 }

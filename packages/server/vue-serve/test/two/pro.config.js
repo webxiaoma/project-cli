@@ -17,7 +17,7 @@ module.exports = {
 
     // 生产环境
     build: {
-        baseUrl:"/actives/",
+        baseUrl:"./aaaa/",
     },
     public:{
         externals: {// 排除打包库

@@ -1,6 +1,6 @@
 {
   "name": "@web-pro/lock-ip-host",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "You can detect whether the port is occupied, and you can also detect IP",
   "main": "index.js",
   "keywords": [
@@ -13,11 +13,11 @@
   "author": "webxiaoma",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webxiaoma/project-cli/tree/master/packages/lock-ip-host"
+    "url": "https://github.com/webxiaoma/project-cli/tree/master/packages/lock-ip-host"
   },
   "bugs": {
     "url": "https://github.com/webxiaoma/project-cli/issues"
   },
-  "homepage": "https://webxiaoma.com",
+  "homepage": "https://webxiaoma.github.io/project-cli/",
   "license": "MIT"
 }

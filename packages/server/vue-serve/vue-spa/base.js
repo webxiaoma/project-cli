@@ -2,7 +2,6 @@
 
 const path = require("path")
 const webpack = require("webpack")
-const merge = require('webpack-merge')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -33,7 +32,7 @@ const baseWebpackConfig = {
         : config.dev.baseUrl
   },
   resolve: {
-    modules: [pathJoin("node_modules")],
+    modules: ["node_modules"],
     extensions: [".js", ".json", ".vue"],
     alias: {
       "@": pathJoin("src")
@@ -165,7 +164,7 @@ if (config.public.useDll.open) {
      new webpack.DllReferencePlugin({
        manifest: require(pathJoin("./pro-dll/dll.manifest.json"))
      }) 
-   );
+   ); 
 }
 
 

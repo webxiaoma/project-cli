@@ -287,7 +287,6 @@ export default {
                 &:active{
                     background:#eee;
                 }
-
                 .tagImg{
                     width:41px;
                     min-height:41px;

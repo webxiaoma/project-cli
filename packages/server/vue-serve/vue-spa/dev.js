@@ -70,6 +70,7 @@ module.exports = ()=>{
                     notes: ['可以尽情的写bug了...']
                 },
                 onErrors: config.dev.systemErrorNotifier ? function (severity, errors) {
+                    console.log(errors)
                     notifier(severity, errors)
                 } : null,
 

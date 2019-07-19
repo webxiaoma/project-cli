@@ -1,11 +1,23 @@
 # lock-ip-host
 
-一个可以检测端口是否被占用，获取本机`ip`地址的`npm`插件
+一个可以检测端口是否被占用，获取本机`ip`地址的`node`插件
+
+[中文文档](https://webxiaoma.github.io/project-cli/docs/blogs/node/lock-ip-host)
 
 ## 安装
 
+
+- 使用`npm`安装
+
 ```js
-npm i @web-pro/lock-ip-host
+npm i @web-pro/lock-ip-host -S
+
+```
+
+- 使用`yarn`安装
+
+```js
+yarn add @web-pro/lock-ip-host -S
 
 ```
 
@@ -23,7 +35,7 @@ lockIPHost.lockPort(8080).then(res => {
 **`res`为对象`Object`,该对象下的参数有：**
 
 - `ip`: 本机的IPv4地址
-- `canUsePort`: 当传入的端口被占用时，可以返回一个可用的端口号，（为传入端口号时，默认为8080）
+- `canUsePort`: 当传入的端口被占用时，可以返回一个可用的端口号，（未有传入端口号时，默认从8080端口检索）
 
 
 

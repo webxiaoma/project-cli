@@ -10,12 +10,26 @@ module.exports = {
         logo:'https://webxiaoma.com/img/manong.jpg',
         searchMaxSuggestions: 15, // 搜索设置数量
         nav: [  // 导航栏 使用了element 导航
-            { text: 'vue-server', link: '/vue-server/'},
+            {text: '首页', link: '/' },
+            {text: 'Server项目服务', items: [
+                { text: 'vue-server', link: "/server/vue-serve" }
+            ]},
+            { text: 'Babel插件', items:[
+                {text:'babel-preset-pro-vue',link:"/babel/babel-preset-pro-vue/"}
+            ]},
+            {text: 'Node插件', items: [
+                { text: 'lock-ip-host"', link: "/node/lock-ip-host/" }
+            ]},
         ],
         sidebar: {  // 侧边栏
-            "/vue-server/":[
-               "",
-               "serv"
+            "/server/":[
+               "vue-serve",
+            ],
+            "/babel/":[
+                "babel-preset-pro-vue"
+            ],
+            "/node/": [
+                "lock-ip-host"
             ]
         },
         sidebarDepth:2,// 侧边栏最大层级 最大只能为2
