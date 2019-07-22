@@ -14,8 +14,6 @@ program
 program
   .command('serve [name]')
   .description('run setup commands for all envs')
-  .option('-e, --entry <filePath>', 'entrance to the file')
-  .option('-o, --out <filePath>', 'output file path')
   .action((name, cmd) => {
     let InitVueServer = require('./vue-spa')
     new InitVueServer(cmd,"serve")
@@ -27,8 +25,6 @@ program
 program
   .command('build [name]')
   .description('run setup commands for all envs')
-  .option('-e, --entry <filePath>', 'entrance to the file')
-  .option('-o, --out <filePath>', 'output file path')
   .action((name, cmd) => {
     let InitVueServer = require('./vue-spa')
     new InitVueServer(cmd, "build")
@@ -40,8 +36,6 @@ program
 program
   .command('dll [name]')
   .description('run setup commands for all envs')
-  .option('-e, --entry <filePath>', 'entrance to the file')
-  .option('-o, --out <filePath>', 'output file path')
   .action((name, cmd) => {
     let InitVueServer = require('./vue-spa')
     new InitVueServer(cmd, "dll");

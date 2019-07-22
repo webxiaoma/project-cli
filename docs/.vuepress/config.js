@@ -18,7 +18,7 @@ module.exports = {
                 {text:'babel-preset-pro-vue',link:"/babel/babel-preset-pro-vue/"}
             ]},
             {text: 'Node插件', items: [
-                { text: 'lock-ip-host"', link: "/node/lock-ip-host/" }
+                { text: 'lock-ip-host', link: "/node/lock-ip-host/" }
             ]},
         ],
         sidebar: {  // 侧边栏

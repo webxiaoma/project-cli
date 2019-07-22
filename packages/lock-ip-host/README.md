@@ -11,7 +11,6 @@
 
 ```js
 npm i @web-pro/lock-ip-host -S
-
 ```
 
 - 使用`yarn`安装

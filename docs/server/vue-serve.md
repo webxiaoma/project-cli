@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 2
+sidebarDepth: 3
 meta:
   - name: keywords
     content: vue-serve
@@ -8,7 +8,7 @@ meta:
 ---
 
 
-# vue-serve
+# vue-server
 
 **文档完善中...**
 ---
@@ -22,11 +22,42 @@ meta:
 - 使用`npm`安装
 
 ```js
-npm i @web-pro/lock-ip-host -S
+npm i @web-pro/vue-server -D
 ```
 
 - 使用`yarn`安装
 
 ```js
-yarn add @web-pro/lock-ip-host -S
+yarn add @web-pro/vue-server -D
 ```
+
+
+
+## 命令
+
+
+### serve
+
+
+
+### build
+
+
+
+### dll
+
+ 
+
+### version
+
+
+
+### help
+
+
+
+
+## 功能优化
+
+
+
