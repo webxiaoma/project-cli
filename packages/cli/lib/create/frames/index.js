@@ -3,7 +3,7 @@
  */
 
 const inquirer = require('inquirer');
-const answerOpt = require('../options.js').answer;
+const framesOpt = require('../options.js').frames;
 
 
 function initPreset(){
@@ -21,16 +21,13 @@ function initPreset(){
                }
             ])
             .then(answers => {
-               answerOpt.name = answers.frame
+               framesOpt.name = answers.frame
                let questionTypeUrl = `./${answers.frame}`;
                let frame = require(questionTypeUrl)
                resolve(new frame()) // 询问完成
             })
       })();
    })
-
-     
 }
-
 
 module.exports = initPreset;

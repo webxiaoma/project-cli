@@ -8,7 +8,6 @@ const program = require('commander'); // 命令行工具
 // let reslut = require('./lib/create/evn.js')();
 
 
-
 program
   .version('0.0.1')
   .option('-v, --version', 'output the version number')
@@ -19,7 +18,7 @@ program
  */
 program
   .command('create [project-name]')
-  .description('run setup commands for all envs')
+  .description('create 创建项目')
   .action((name, cmd)=> {
        // create 命令  
      require('./lib/create')(name, cmd)

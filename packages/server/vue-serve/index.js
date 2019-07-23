@@ -4,18 +4,17 @@ const program = require('commander'); // 命令行工具
 
 
 program
-  .version('1.0.3')
-  .option('-v, --version', 'output the version number')
-  .option('-h, --help', 'help')
+  .version('1.0.4')
+  
 
 /**
  * serve 命令
  */
 program
   .command('serve [name]')
-  .description('run setup commands for all envs')
+  .description('启动命令,name参数可省略')
   .action((name, cmd) => {
-    let InitVueServer = require('./vue-spa')
+    let InitVueServer = require('./vue-spa')  
     new InitVueServer(cmd,"serve")
   });
 
@@ -24,7 +23,7 @@ program
  */
 program
   .command('build [name]')
-  .description('run setup commands for all envs')
+  .description('构建命令,name参数可省略')
   .action((name, cmd) => {
     let InitVueServer = require('./vue-spa')
     new InitVueServer(cmd, "build")
@@ -35,24 +34,11 @@ program
  */
 program
   .command('dll [name]')
-  .description('run setup commands for all envs')
+  .description('执行dllPlugin,name参数可省略')
   .action((name, cmd) => {
     let InitVueServer = require('./vue-spa')
     new InitVueServer(cmd, "dll");
   });
-
-
-/**
- * help 命令
- **/ 
-
-program.on('--help', function () {
-  console.log('')
-  console.log('Examples:');
-  console.log('  $ custom-help --help');
-  console.log('  $ custom-help -h');
-});
-
 
 program.parse(process.argv);
 

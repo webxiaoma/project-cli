@@ -9,10 +9,16 @@ module.exports = {
       dirName:"", // 创建的目录名
    },
 
-   // 回答选项
-   answer:{ 
-      name:'',
-      frame:'', // 所选框架
-      platform:'', // 平台
+   // 选择前端库
+   frames:{
+      name:'', // 
+   },
+
+   // Vue 配置回答
+   answerVue:{ 
+      platform: '', // 平台 (1:pc端,2:移动端)
+      useRouter: false, // 是否使用router
+      useVuex:false, // 是否使用vuex
+      request: 0, // 选择交互请求(0:不选,1:axios,2:flyio)
    }
 };

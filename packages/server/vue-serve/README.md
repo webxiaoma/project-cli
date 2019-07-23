@@ -1,12 +1,21 @@
 # vue-server 
 
-vue打包编译服务
+打包`vue`项目服务
 
+- [中文文档](https://webxiaoma.github.io/project-cli/docs/blogs/server/vue-serve.html)
 
-## 相关文章
+## 安装
 
-[vue中使用happypack](https://flyyang.me/2017/03/09/%E4%BD%BF%E7%94%A8happypack%E5%B0%86vuejs%E9%A1%B9%E7%9B%AEwebpack%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6%E6%8F%90%E5%8D%8750/)
+使用`npm`安装
 
+```js
+npm i @web-pro/vue-server -D
+```
 
+使用`yarn`安装
 
-[webpack-dev-server 热替换配置详解](https://segmentfault.com/a/1190000007703339)
+```js
+yarn add @web-pro/vue-server -D
+```
+
+## 功能

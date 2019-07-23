@@ -5,7 +5,6 @@ import fly from 'flyio'
 
 // 响应拦截
 fly.interceptors.response.use(res => {
-
     return res.data;
 },error =>{
         // console.log(error.response.status)
