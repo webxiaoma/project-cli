@@ -15,7 +15,10 @@ module.exports = {
                 { text: 'vue-server', link: "/server/vue-serve" }
             ]},
             { text: 'Babel插件', items:[
-                {text:'babel-preset-pro-vue',link:"/babel/babel-preset-pro-vue/"}
+                { text:'babel-preset-pro-vue',link:"/babel/babel-preset-pro-vue/"}
+            ]},
+             { text: ' Webpack插件', items:[
+                {text: 'html-extend-webpack-plugin', link:"/webpack/html-extend-webpack-plugin/"}
             ]},
             {text: 'Node插件', items: [
                 { text: 'lock-ip-host', link: "/node/lock-ip-host/" }
@@ -27,6 +30,9 @@ module.exports = {
             ],
             "/babel/":[
                 "babel-preset-pro-vue"
+            ],
+            "/webpack/":[
+                 "html-extend-webpack-plugin"
             ],
             "/node/": [
                 "lock-ip-host"
