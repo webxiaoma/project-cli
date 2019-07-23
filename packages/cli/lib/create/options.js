@@ -20,5 +20,6 @@ module.exports = {
       useRouter: false, // 是否使用router
       useVuex:false, // 是否使用vuex
       request: 0, // 选择交互请求(0:不选,1:axios,2:flyio)
+      useElementUl: false, // 使用ElementUl
    }
 };

@@ -48,7 +48,7 @@ let questions = [
       }
    }, { // 选择交互工具
       type: "list",
-      message: "请选择选择交互工具：",
+      message: "请选择想使用交互工具：",
       name: "request",
       choices: [
          {
@@ -64,6 +64,20 @@ let questions = [
       ],
       saveSet(answers) {
          answerOpt.request = answers.request
+      }
+   },{ // 选择组件库
+      type: "checkbox",
+      message: "请选择想使用组件库：",
+      name: "library",
+      choices: [
+         {
+            name: "1. ElementUl组件库",
+            value: 1
+         },
+      ],
+      saveSet(answers) {
+         var library = answers.library
+         answerOpt.useElementUl = library.indexOf(1) > -1;
       }
    }
 ]
