@@ -1,4 +1,5 @@
 const answerVue = require("../../../options.js").answerVue
+const formattingStr = require("../../../../../utils").formattingStr;
 
 let postcssStr =
 `/**
@@ -8,18 +9,17 @@ let postcssStr =
 
 module.exports = {
     plugins: {
-        autoprefixer: {
-        },
-        "postcss-pxtorem": {
+        autoprefixer: {},
+        ${answerVue.platform === 2
+        ?`"postcss-pxtorem": {
             rootValue: 75,
             propList: ['*'],
             selectorBlackList:["el-"]
-        }
+        }`:"placeholder-mxx"}
     }
 }
 `
 
 
 
-
-module.exports = postcssStr;
+module.exports = formattingStr(postcssStr, "placeholder-mxx");;

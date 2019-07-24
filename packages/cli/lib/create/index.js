@@ -12,8 +12,6 @@ const installDeps = require('./installDeps.js')
 
 async function createCmd(dirName,cmd){
     
-
-
     opt.cmdOpt.dirName = dirName;
 
     //检测环境，并创建目录
@@ -21,12 +19,14 @@ async function createCmd(dirName,cmd){
 
     // 选择项目框架
     let frameObj = await selectedFrames();
-
     // 设置预设
-    await frameObj.initPreset()
+    let initPreset = await frameObj.initPreset()
+
+    // 拉取项目
+    let pullProject = await frameObj.pullProject();
+
     // 初始化项目
-    await frameObj.initProject()
-    
+    let initProject =  await frameObj.initProject()
 
     // 安装项目
     // installDeps()

@@ -56,7 +56,7 @@ module.exports = async () =>{
                 if(existsDir){
                     inquirer
                         .prompt([
-                              { // 选择项目框架 
+                              { // 是否覆盖项目
                                 type: "confirm",
                                 message: `当前已存在 ${opt.cmdOpt.dirName} 目录，是否覆盖：`,
                                 name: "existsDir",

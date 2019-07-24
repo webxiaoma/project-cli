@@ -1,59 +1,127 @@
 /**
- * git下载仓库，并初始化配置文件
+ * 初始化配置文件
  */
 
-const downloadGitRepo = require('download-git-repo');
 const fse = require("fs-extra");
-const options = require('../../options.js');
 const path = require("path");
-console.log(path.resolve(process.cwd(), `./${options.cmdOpt.dirName}/main.js`));
-
-// 下载仓库
-function download(){
-  downloadGitRepo('direct:https://github.com/webxiaoma/webpack-cli.git#vue-cli-dev', options.cmdOpt.dirName, { clone: true }, function (err) {
-
-     if (!err){ // 下载成功
-       console.log("下载成功")
-      
-
-     }else{ // 下载失败
-       console.log("下载失败")
-
-     }
-  })
-}
+const options = require('../../options.js');
+const { getProFileUrl } = require("../../../../utils")
+const cwd = process.cwd()
+const answerVue = options.answerVue;
 
 // 初始化文件
-function initFiles(){
-  let mainStr = require('./files/main.js.js')
-  fse.outputFile(path.resolve(process.cwd(), `./${options.cmdOpt.dirName}/src/main.js`), mainStr).then(res => {
-    console.log(res)
+function mergeDispose(){
+
+  let promiseAry = [];
+
+  // 初始化main.js
+  let main = ()=>{
+    let mainStr = require('./files/main.js')
+    let mainUrl = path.resolve(cwd, `./${options.cmdOpt.dirName}/src/main.js`)
+    return fse.outputFile(mainUrl, mainStr)
+  }
+  promiseAry.push(main())
+
+
+  // 初始化package.json
+  let package = ()=>{
+    let packageStr = require('./files/package.js')
+    let packageUrl = path.resolve(cwd, `./${options.cmdOpt.dirName}/package.json`)
+    return fse.outputFile(packageUrl, packageStr)
+  }
+  promiseAry.push(package())
+
+
+  // 初始化postcss.config.js 
+  let postcss = () => {
+    let postcssStr = require('./files/postcss.js')
+    let postcssUrl = path.resolve(cwd, `./${options.cmdOpt.dirName}/postcss.config.js`)
+    return fse.outputFile(postcssUrl, postcssStr)
+   }
+  promiseAry.push(postcss())
+
+
+  // 初始化 App.vue
+  let app = () => {
+     let appStr = require('./files/app.js')
+     let appUrl = path.resolve(cwd, `./${options.cmdOpt.dirName}/src/App.vue`)
+     return fse.outputFile(appUrl, appStr)
+   }
+  promiseAry.push(app())
+
+
+   // 初始化request.js
+  let request = () => {
+    let requestStr = require('./files/request.js')
+    let requestUrl = path.resolve(cwd, `./${options.cmdOpt.dirName}/src/utils/request.js`)
+    return fse.outputFile(requestUrl, requestStr)
+  }
+  promiseAry.push(request())
+
+
+
+  //路由删除
+  let removeRouter = () => {
+    return fse.remove(path.resolve(cwd, `./${options.cmdOpt.dirName}/src/router`))
+  }
+  let removeViews = () => {
+    return fse.remove(path.resolve(cwd, `./${options.cmdOpt.dirName}/src/views`))
+  }
+
+  //vuex 删除
+  let removeStore = () => {
+    return fse.remove(path.resolve(cwd, `./${options.cmdOpt.dirName}/src/store`))
+  }
+
+
+  // 交互工具（utils文件）
+  let removeUtilsRequest = () => { 
+    return fse.remove(path.resolve(cwd, `./${options.cmdOpt.dirName}/src/utils/request.js`))
+  }
+
+  let removeUtilsIndex = () => {
+    return fse.remove(path.resolve(cwd, `./${options.cmdOpt.dirName}/src/utils/index.js`))
+ }
+
+
+  //路由操作
+  if (!answerVue.useRouter){ // 不要路由
+    promiseAry.push(removeRouter())
+    promiseAry.push(removeViews())
+  }
+
+
+  //vuex操作
+  if (!answerVue.useVuex) { // 不要vuex
+    promiseAry.push(removeStore())
+  }
+
+  // 交互工具（utils文件）
+  if (answerVue.request === 0) { // 不要交互工具
+    promiseAry.push(removeUtilsRequest())
+    promiseAry.push(removeUtilsIndex())
+  }
+  
+
+  return promiseAry;
+  
+}
+
+function initFiles(resolve){
+  Promise.all(mergeDispose()).then(res=>{
+     console.log(1111)
+     resolve(true)
   })
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function initProject(){
-   download()
+function saveProject(){
+    
 }
 
 
-
-module.exports = initProject;
+module.exports = ()=>{
+  return new Promise((resolve, reject) => {
+     initFiles(resolve)
+  })
+}
