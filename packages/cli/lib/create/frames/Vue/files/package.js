@@ -1,6 +1,6 @@
-const answerVue = require("../../../options.js").answerVue
-const cmdOpt = require("../../../options.js").cmdOpt
-const formattingStr = require("../../../../../utils").formattingStr;
+const answerVue = require("../../../../options.js").answerVue
+const cmdOpt = require("../../../../options.js").cmdOpt
+const formattingStr = require("../../../../utils").formattingStr;
 
 let packageJsonStr =
 `{
@@ -24,7 +24,7 @@ let packageJsonStr =
   }, 
   "devDependencies": {
     ${answerVue.useElementUl ? '"babel-plugin-component": "^1.1.1",' : "placeholder-mxx"}
-    ${answerVue.useVuex ? '"postcss-pxtorem":"^4.0.1"' : "placeholder-mxx"}
+    ${answerVue.platform === 2 ? '"postcss-pxtorem":"^4.0.1"' : "placeholder-mxx"}
     "@web-pro/babel-preset-pro-vue": "^1.0.4",
     "@web-pro/vue-server": "^1.0.4"
    

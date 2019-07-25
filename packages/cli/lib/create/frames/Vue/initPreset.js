@@ -3,7 +3,7 @@
  */
 
 const inquirer = require('inquirer');
-const answerOpt = require('../../options.js').answerVue;
+const answerOpt = require('../../../options.js').answerVue;
 
 let questionIndex = 0, // 当前提问索引（可以实现返回上一步）
     questionsLength = 0; // 问题长度

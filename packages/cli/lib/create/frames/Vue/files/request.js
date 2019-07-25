@@ -1,5 +1,5 @@
-const answerVue = require("../../../options.js").answerVue
-const formattingStr = require("../../../../../utils").formattingStr;
+const answerVue = require("../../../../options.js").answerVue
+const formattingStr = require("../../../../utils").formattingStr;
 
 let requestName;
 
@@ -80,8 +80,6 @@ function createRequestConfig(api,{method, headers,patterns,data}){
         headers: header,
     });
     ` : "placeholder-mxx"}
-   
-}
-`
+}`
 
 module.exports = formattingStr(requestStr, "placeholder-mxx");;

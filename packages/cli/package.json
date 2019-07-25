@@ -18,6 +18,7 @@
     "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "ora": "^3.4.0",
+    "shelljs": "^0.8.3",
     "validate-npm-package-name": "^3.0.0"
   }
 }

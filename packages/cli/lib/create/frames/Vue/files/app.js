@@ -1,5 +1,5 @@
-const answerVue = require("../../../options.js").answerVue
-const formattingStr = require("../../../../../utils").formattingStr
+const answerVue = require("../../../../options.js").answerVue
+const formattingStr = require("../../../../utils").formattingStr
 
 let appVueContentStr = 
 `<template>

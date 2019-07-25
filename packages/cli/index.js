@@ -18,11 +18,24 @@ program
  */
 program
   .command('create [project-name]')
-  .description('create 创建项目')
+  .description('创建项目')
   .action((name, cmd)=> {
        // create 命令  
      require('./lib/create')(name, cmd)
   });
+
+
+/**
+ * save 命令
+ */
+program
+  .command('save [project-url]')
+  .description('保存添加项目')
+  .action((name, cmd) => {
+    // create 命令  
+    
+  });
+
 
 
 program.parse(process.argv);

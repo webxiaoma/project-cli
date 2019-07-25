@@ -4,8 +4,7 @@
 
 const fse = require("fs-extra");
 const path = require("path");
-const options = require('../../options.js');
-const { getProFileUrl } = require("../../../../utils")
+const options = require('../../../options.js');
 const cwd = process.cwd()
 const answerVue = options.answerVue;
 
@@ -32,13 +31,21 @@ function mergeDispose(){
   promiseAry.push(package())
 
 
-  // 初始化postcss.config.js 
+  // 初始化postcss.config.js .
   let postcss = () => {
     let postcssStr = require('./files/postcss.js')
     let postcssUrl = path.resolve(cwd, `./${options.cmdOpt.dirName}/postcss.config.js`)
     return fse.outputFile(postcssUrl, postcssStr)
    }
   promiseAry.push(postcss())
+
+  // 初始化babel.config.js
+  let babel = () => {
+    let babelStr = require('./files/babel.js')
+    let babelUrl = path.resolve(cwd, `./${options.cmdOpt.dirName}/babel.config.js`)
+    return fse.outputFile(babelUrl, babelStr)
+  }
+  promiseAry.push(babel())
 
 
   // 初始化 App.vue
@@ -109,14 +116,8 @@ function mergeDispose(){
 
 function initFiles(resolve){
   Promise.all(mergeDispose()).then(res=>{
-     console.log(1111)
      resolve(true)
   })
-}
-
-
-function saveProject(){
-    
 }
 
 

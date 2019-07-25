@@ -3,7 +3,7 @@
  */
 
 const inquirer = require('inquirer');
-const framesOpt = require('../options.js').frames;
+const framesOpt = require('../../options.js').frames;
 
 
 function initPreset(){

@@ -1,5 +1,5 @@
-const answerVue = require("../../../options.js").answerVue
-const formattingStr = require("../../../../../utils").formattingStr
+const answerVue = require("../../../../options.js").answerVue
+const formattingStr = require("../../../../utils").formattingStr
 
 let babelContentStr =
 `// babel 配置
@@ -19,9 +19,7 @@ module.exports = {
         "styleLibraryName": "theme-chalk"
       }
     ]
-    `: "placeholder-mxx"}
-    
-  ]
+    `: "placeholder-mxx"}]
 };
 ` 
 

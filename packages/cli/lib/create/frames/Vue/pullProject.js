@@ -8,7 +8,8 @@ const fse = require("fs-extra");
 const path = require("path");
 const ora = require("ora");
 const chalk = require("chalk");
-const options = require('../../options.js');
+const { getProFileUrl } = require("../../../utils")
+const options = require('../../../options.js');
 const cwd = process.cwd()
 
 let vueCli= {
@@ -36,11 +37,10 @@ function downloadProject(resolve) {
             copyProject(resolve) // 复制
         } else { // 下载失败
             spinner.fail(`${chalk.red("项目拉取失败 \n")}`);
-            process.exit(0) // 退出程序
+            process.exit(1) // 退出程序
         }
     })
 }
-
 
 module.exports = () => {
     return new Promise((resolve, reject) => {

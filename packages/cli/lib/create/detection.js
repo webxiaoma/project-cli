@@ -5,7 +5,7 @@
 const fse = require("fs-extra");
 const inquirer = require('inquirer');
 const validateNpmName = require("validate-npm-package-name");
-const opt = require('./options.js');
+const opt = require('../options.js');
 
 
 module.exports = async () =>{
