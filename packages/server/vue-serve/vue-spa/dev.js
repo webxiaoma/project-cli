@@ -54,6 +54,8 @@ const devServerOptions  = {
 
 // 执行webpackConfig, 外部可以配置webpackConfig
 config.public.webpackConfig(devWebpackConfig);
+// 对devserver 进行配置
+config.dev.devServeConfig(devServerOptions);
 
 
 module.exports = ()=>{

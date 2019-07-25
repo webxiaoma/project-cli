@@ -29,7 +29,7 @@ module.exports = merge(
       hot: true, // 模块热替换
       proxyTable: {}, // 配置代理
       systemErrorNotifier: true, //是否开启系统错误通知
-
+      devServeConfig(config){}, // devServe 服务
       /**
        * @msg source-map配置
        */

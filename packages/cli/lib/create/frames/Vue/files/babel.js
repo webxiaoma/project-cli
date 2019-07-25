@@ -18,9 +18,20 @@ module.exports = {
         "libraryName": "element-ui",
         "styleLibraryName": "theme-chalk"
       }
-    ]
-    `: "placeholder-mxx"}]
+    ],
+    `: "placeholder-mxx"}
+    ${answerVue.useVant?
+    `['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
+    `: "placeholder-mxx"}
+    
+  ]
 };
 ` 
 
 module.exports = formattingStr(babelContentStr, "placeholder-mxx")
+
+

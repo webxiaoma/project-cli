@@ -20,3 +20,5 @@ exports.formattingStr = function(str,placeholder){
  exports.getProFileUrl = function(url) {
    return path.resolve(process.env.USERPROFILE, "/.pro", url)
  }
+
+

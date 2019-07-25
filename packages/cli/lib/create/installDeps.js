@@ -18,12 +18,15 @@ module.exports = ()=>{
     // 安装插件
     
     if (shell.exec("yarn install").code !== 0){
-        spinner.fail(`${chalk.red("安装失败,请手动安装\n")}`);
-        process.exit(1) // 退出程序
-    }else{
-        spinner.succeed(`${chalk.green("安装成功 \n")}`);
-        // 启动项目
-        shell.exec("yarn start");
+        if(shell.exec("cnpm install").code !== 0){
+            console.log(chalk.red("国内建议使用cnpm或yarn \n"))
+            if(shell.exec("npm install").code !== 0){
+                spinner.fail(`${chalk.red("安装失败,请手动安装\n")}`);
+                process.exit(1) // 退出程序
+            }
+           
+        }
     }
-   
+        
+    spinner.succeed(`${chalk.green("安装成功 \n")}`);
 };

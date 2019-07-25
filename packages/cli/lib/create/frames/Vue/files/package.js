@@ -16,6 +16,7 @@ let packageJsonStr =
   "license": "ISC", 
   "dependencies": {
     ${answerVue.useElementUl?'"element-ui": "^2.10.1",' : "placeholder-mxx"}
+    ${answerVue.useVant?'"vant": "^2.0.9",' : "placeholder-mxx"}
     ${answerVue.request === 2?'"flyio": "^0.6.14",' : "placeholder-mxx"}
     ${answerVue.request === 1?'"axios": "^0.19.0",' : "placeholder-mxx"}
     ${answerVue.useRouter?'"vue-router": "^3.0.6",' : "placeholder-mxx"}
@@ -23,8 +24,8 @@ let packageJsonStr =
     "vue": "^2.6.10"
   }, 
   "devDependencies": {
-    ${answerVue.useElementUl ? '"babel-plugin-component": "^1.1.1",' : "placeholder-mxx"}
-    ${answerVue.platform === 2 ? '"postcss-pxtorem":"^4.0.1"' : "placeholder-mxx"}
+    ${answerVue.useElementUl || answerVue.useVant? '"babel-plugin-component": "^1.1.1",' : "placeholder-mxx"}
+    ${answerVue.platform === 2 ? '"postcss-pxtorem":"^4.0.1",' : "placeholder-mxx"}
     "@web-pro/babel-preset-pro-vue": "^1.0.4",
     "@web-pro/vue-server": "^1.0.4"
    
