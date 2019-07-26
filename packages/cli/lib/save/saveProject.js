@@ -16,16 +16,16 @@ let projectJson = {
 
 function saveProject(resolve,proUrl) {
     fse.copySync(path.resolve(cwd, `./${options.cmdOpt.dirName}`), getProFileUrl(`./project/${projectJson.name}`));
-    let existsDir = fse.pathExistsSync(getProFileUrl("./project/projectList.json"));
+    let existsDir = fse.pathExistsSync(getProFileUrl("./project/.project.list"));
     if (existsDir) { // 如果存在
-        let json = fse.readJsonSync(getProFileUrl("./project/projectList.json"))
+        let json = fse.readJsonSync(getProFileUrl("./project/.project.list"))
         json.push(projectJson)
-        fse.outputJsonSync(getProFileUrl("./project/projectList.json"), json)
+        fse.outputJsonSync(getProFileUrl("./project/.project.list"), json)
     } else { //不存在
         let json = [
             projectJson
         ]
-        fse.outputJsonSync(getProFileUrl("./project/projectList.json"), json)
+        fse.outputJsonSync(getProFileUrl("./project/.project.list"), json)
     }
 
     resolve(true)

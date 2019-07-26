@@ -11,13 +11,14 @@ module.exports = {
         searchMaxSuggestions: 15, // 搜索设置数量
         nav: [  // 导航栏 使用了element 导航
             {text: '首页', link: '/' },
+            {text: 'CLI服务', link: "/cli/introduce.html"},
             {text: 'Server项目服务', items: [
                 { text: 'vue-server', link: "/server/vue-serve" }
             ]},
             { text: 'Babel插件', items:[
                 { text:'babel-preset-pro-vue',link:"/babel/babel-preset-pro-vue/"}
             ]},
-             { text: ' Webpack插件', items:[
+            { text: ' Webpack插件', items:[
                 {text: 'html-extend-webpack-plugin', link:"/webpack/html-extend-webpack-plugin/"}
             ]},
             {text: 'Node插件', items: [
@@ -25,6 +26,27 @@ module.exports = {
             ]},
         ],
         sidebar: {  // 侧边栏
+            "/cli/":[
+                {
+                    title: '介绍',
+                    collapsable: false, // 是否可折叠
+                    children: [
+                        'introduce',
+                    ]
+                },{
+                    title: '安装',
+                    collapsable: false, // 是否可折叠
+                    children: [
+                        'install',
+                    ]
+                },{
+                    title: '基础',
+                    collapsable: false, // 是否可折叠
+                    children: [
+                        '',
+                    ]
+                }
+            ],
             "/server/":[
                "vue-serve",
             ],
@@ -32,7 +54,7 @@ module.exports = {
                 "babel-preset-pro-vue"
             ],
             "/webpack/":[
-                 "html-extend-webpack-plugin"
+                 "html-extend-web pack-plugin"
             ],
             "/node/": [
                 "lock-ip-host"

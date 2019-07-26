@@ -8,18 +8,18 @@ const fse = require("fs-extra");
 const path = require("path");
 const ora = require("ora");
 const chalk = require("chalk");
-const { getProFileUrl } = require("../../../utils")
-const options = require('../../../options.js');
+const { getProFileUrl } = require("../utils")
+const options = require('../options.js');
 const cwd = process.cwd()
 
-let vueCli= {
-    githubUrl:'direct:https://github.com/webxiaoma/webpack-cli.git#vue-cli', // 远程仓库地址
+let vueCli = {
+    githubUrl: 'direct:https://github.com/webxiaoma/webpack-cli.git#vue-cli', // 远程仓库地址
     localUrl: getProFileUrl("./github/vue-cli"),  // 下载后本地存储地址
     workUrl: path.resolve(cwd, `./${options.cmdOpt.dirName}`),   // 工作区地址
 }
 // 
 // 复制项目
-function copyProject(resolve){
+function copyProject(resolve) {
     fse.copySync(vueCli.localUrl, vueCli.workUrl)
     resolve(true)
 }
@@ -43,20 +43,20 @@ function downloadProject(resolve) {
     })
 }
 
-module.exports = () => {
+module.exports = (pro) => {
     return new Promise((resolve, reject) => {
         let existsDir = fse.pathExistsSync(vueCli.localUrl);
         if (existsDir) { // 如果存在
             // 检查项目是否完整
             let isGithubFile = fse.pathExistsSync(getProFileUrl("./github/.github.list"));
-            if (isGithubFile){ // .github.list文件存在
+            if (isGithubFile) { // .github.list文件存在
                 let json = fse.readJsonSync(getProFileUrl("./github/.github.list"))
-                copyProject(resolve)
-            }else{
-                downloadProject(resolve)
+                copyProject(resolve, pro)
+            } else {
+                downloadProject(resolve, pro)
             }
         } else { //不存在
-            downloadProject(resolve)
+            downloadProject(resolve,pro)
         }
     })
 }

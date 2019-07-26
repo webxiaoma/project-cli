@@ -9,8 +9,16 @@
   "scripts": {
     "start": "index.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webxiaoma/project-cli.git"
+  },
+  "author": "webxiaoma",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webxiaoma/project-cli/issues"
+  },
+  "homepage": "https://webxiaoma.github.io/project-cli/docs/blogs/",
   "dependencies": {
     "chalk": "^2.4.2",
     "commander": "^2.20.0",

@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webxiaoma/vue-cli.git"
+    "url": "https://github.com/webxiaoma/vue-cli.git"
   },
   "author": "webxiaoma",
   "license": "MIT",

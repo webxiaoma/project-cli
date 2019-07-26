@@ -4,10 +4,6 @@ const program = require('commander'); // 命令行工具
 
 
 
-// 检测版本
-// let reslut = require('./lib/create/evn.js')();
-
-
 program
   .version('0.0.1')
   .option('-v, --version', 'output the version number')
