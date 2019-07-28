@@ -1,8 +1,6 @@
 /**
  * 配置记录 文件配置
  */
-
-
 module.exports = {
    //命令配置
    cmdOpt:{

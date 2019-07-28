@@ -1,9 +1,10 @@
 
 const opt = require('../options.js') 
 const detection = require('./detection.js')
-const selectedFrames = require('./frames/index.js'); 
-const installDeps = require('./installDeps.js')
+const selectFrames = require('./selectFrames.js'); 
+const pullProject = require('./pullProject.js'); 
 const saveProject = require("../save/saveProject");
+const installDeps = require('./installDeps.js')
 
 
 /**
@@ -19,28 +20,23 @@ async function createCmd(dirName,cmd){
      await detection()
 
     // 选择项目框架
-    let frameObj = await selectedFrames();
+    let frameObj = await selectFrames();
 
-    // 设置依赖
-    let initPreset = await frameObj.initPreset()
+    // 选择依赖
+    await frameObj.selectDepend()
 
     // 拉取项目
-    let pullProject = await frameObj.pullProject();
+    await pullProject();
 
     // 初始化项目
-    let initProject =  await frameObj.initProject();
+    await frameObj.initProject();
 
     // 询问是否保存项目模板
      await saveProject()
 
-    // 安装项目
+    // 安装依赖
      installDeps()
 }
-
-
-
-
-
 
 
 

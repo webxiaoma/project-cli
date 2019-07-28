@@ -3,6 +3,9 @@ module.exports = { // 选择项目框架
     message: "请选择一个项目框架：",
     name: "frame",
     choices: [
-        "Vue",
+        {
+            name: "Vue",
+            value: "vue"
+         },
     ],
 }

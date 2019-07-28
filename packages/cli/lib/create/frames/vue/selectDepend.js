@@ -14,7 +14,7 @@ let questions = vueAsk;
 
 questionsLength = questions.length;
 
-function initPreset(){
+function selectDepend(){
    return new Promise((resolve,reject)=>{
       (function ask(){
          inquirer
@@ -36,4 +36,4 @@ function initPreset(){
 }
 
 
-module.exports = initPreset;
+module.exports = selectDepend;

@@ -5,58 +5,57 @@
 
 const downloadGitRepo = require('download-git-repo');
 const fse = require("fs-extra");
-const path = require("path");
 const ora = require("ora");
 const chalk = require("chalk");
-const { getProFileUrl } = require("../utils")
-const options = require('../options.js');
-const cwd = process.cwd()
 
-let vueCli = {
-    githubUrl: 'direct:https://github.com/webxiaoma/webpack-cli.git#vue-cli', // 远程仓库地址
-    localUrl: getProFileUrl("./github/vue-cli"),  // 下载后本地存储地址
-    workUrl: path.resolve(cwd, `./${options.cmdOpt.dirName}`),   // 工作区地址
-}
-// 
-// 复制项目
-function copyProject(resolve) {
-    fse.copySync(vueCli.localUrl, vueCli.workUrl)
-    resolve(true)
-}
+module.exports = () => {
+   const {githubPro} = require("../depend")
+   const { getProFileUrl } = require("../utils")
+   const options = require('../options.js');
 
-// 下载仓库
-function downloadProject(resolve) {
+    let proMsg = githubPro[options.frames.name]; // vue项目信息
 
-    let spinner = ora({
-        text: `${chalk.gray("拉取项目中...")} \n\n`,
-        color: "green"
-    }).start();
+    // 复制项目
+    function copyProject(resolve) {
+        fse.copySync(proMsg.localUrl, proMsg.workUrl)
+        resolve(true)
+    }
 
-    downloadGitRepo(vueCli.githubUrl, vueCli.localUrl, { clone: true }, function (err) {
-        if (!err) { // 下载成功
-            spinner.succeed(`${chalk.green("项目拉取成功 \n")}`);
-            copyProject(resolve) // 复制
-        } else { // 下载失败
-            spinner.fail(`${chalk.red("项目拉取失败 \n")}`);
-            process.exit(1) // 退出程序
-        }
-    })
-}
+    // 下载仓库
+    function downloadProject(resolve,json = {}) {
 
-module.exports = (pro) => {
-    return new Promise((resolve, reject) => {
-        let existsDir = fse.pathExistsSync(vueCli.localUrl);
-        if (existsDir) { // 如果存在
-            // 检查项目是否完整
-            let isGithubFile = fse.pathExistsSync(getProFileUrl("./github/.github.list"));
-            if (isGithubFile) { // .github.list文件存在
-                let json = fse.readJsonSync(getProFileUrl("./github/.github.list"))
-                copyProject(resolve, pro)
-            } else {
-                downloadProject(resolve, pro)
+        let spinner = ora({
+            text: `${chalk.gray("拉取项目中...")} \n\n`,
+            color: "green"
+        }).start();
+
+        downloadGitRepo(proMsg.githubUrl, proMsg.localUrl, { clone: true }, function (err) {
+            if (!err) { // 下载成功
+                spinner.succeed(`${chalk.green("项目拉取成功 \n")}`);
+                json[options.frames.name] = proMsg;
+
+                fse.outputJson(getProFileUrl("./github/.github.list"),json)
+                copyProject(resolve) // 复制
+            } else { // 下载失败
+                spinner.fail(`${chalk.red("项目拉取失败 \n")}`);
+                process.exit(1) // 退出程序
             }
-        } else { //不存在
-            downloadProject(resolve,pro)
+        })
+    }
+ 
+
+    return new Promise((resolve, reject) => {
+        // 检查项目是否完整(还是下载一半)
+        let isGithubFile = fse.pathExistsSync(getProFileUrl("./github/.github.list"));
+        if (isGithubFile) { // .github.list文件存在
+            let json = fse.readJsonSync(getProFileUrl("./github/.github.list"))
+            if(json[options.frames.name]){ // 该项目已存在
+                copyProject(resolve)
+            }else{
+                downloadProject(resolve,json)
+            }
+        } else {
+            downloadProject(resolve)
         }
     })
 }
