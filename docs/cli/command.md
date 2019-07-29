@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 2
+sidebarDepth: 3
 meta:
   - name: keywords
     content: CLI
@@ -9,4 +9,23 @@ meta:
 
 # CLI
 
-文档完善中...
+asdasdads
+
+
+## 插件
+asdda
+
+## 插件
+
+asdadsfads
+
+
+## 插件
+
+adsadsad
+
+
+## 插件
+
+
+dsafasdasd

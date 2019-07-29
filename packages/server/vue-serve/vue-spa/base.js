@@ -66,28 +66,28 @@ const baseWebpackConfig = {
         include: [pathJoin("src")]
       },
       {
-        test: /\.(png|jpe?g|gif)$/,
+        test: /\.(png|jpe?g|svg|gif)$/,
         loader: "url-loader",
         options: {
           name: assetsPath("img/[name]-[hash:7].[ext]"),
-          limit: 1024, // 1kb
-        },
+          limit: 1024 // 1kb
+        }
       },
-      { 
+      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: "url-loader",
         options: {
           name: assetsPath("media/[name].[hash:7]].[ext]"),
-          limit: 10000 
-        },
+          limit: 10000
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: "url-loader",
         options: {
           name: assetsPath("fonts/[name].[hash:7]].[ext]"),
-          limit: 10000 
-        },
+          limit: 10000
+        }
       }
     ]
   },
@@ -104,7 +104,7 @@ const baseWebpackConfig = {
           }
         : false
     }),
-    new VueLoaderPlugin(),
+    new VueLoaderPlugin()
   ]
 }; 
 

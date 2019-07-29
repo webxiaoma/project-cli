@@ -2,11 +2,30 @@
 sidebarDepth: 2
 meta:
   - name: keywords
-    content: CLI
+    content: CLI | 介绍
   - name: description
-    content: 本文主要是本项目的简述
+    content: CLI前端项目构建工程化管理
 ---
 
 # CLI
 
-文档完善中...
+asdasdads
+
+
+## 插件
+asdda
+
+## 插件
+
+asdadsfads
+
+
+## 插件
+
+adsadsad
+
+
+## 插件
+
+
+dsafasdasd

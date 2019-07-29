@@ -5,11 +5,11 @@
 const fse = require("fs-extra");
 const path = require("path");
 const cwd = process.cwd()
-const answerVue = options.answerVue;
 
 
 module.exports = ()=>{
   const options = require('../../../options.js');
+  const answerVue = options.answerVue;
 
   // 初始化文件
   function mergeDispose(){

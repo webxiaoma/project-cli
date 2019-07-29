@@ -15,7 +15,7 @@ let packageJsonStr =
   "author": "",
   "license": "ISC", 
   "dependencies": {
-    ${answerVue.useElementUl?'"element-ui": "^2.10.1",' : "placeholder-mxx"}
+    ${answerVue.useElementUl?'"element-ui": "^2.11.0",' : "placeholder-mxx"}
     ${answerVue.useVant?'"vant": "^2.0.9",' : "placeholder-mxx"}
     ${answerVue.request === 2?'"flyio": "^0.6.14",' : "placeholder-mxx"}
     ${answerVue.request === 1?'"axios": "^0.19.0",' : "placeholder-mxx"}

@@ -9,6 +9,7 @@ const ora = require("ora");
 const chalk = require("chalk");
 
 module.exports = () => {
+
    const {githubPro} = require("../depend")
    const { getProFileUrl } = require("../utils")
    const options = require('../options.js');
@@ -17,7 +18,7 @@ module.exports = () => {
 
     // 复制项目
     function copyProject(resolve) {
-        fse.copySync(proMsg.localUrl, proMsg.workUrl)
+        fse.copySync(proMsg.localUrl, proMsg.getWorkUrl());
         resolve(true)
     }
 
@@ -33,7 +34,7 @@ module.exports = () => {
             if (!err) { // 下载成功
                 spinner.succeed(`${chalk.green("项目拉取成功 \n")}`);
                 json[options.frames.name] = proMsg;
-
+                
                 fse.outputJson(getProFileUrl("./github/.github.list"),json)
                 copyProject(resolve) // 复制
             } else { // 下载失败

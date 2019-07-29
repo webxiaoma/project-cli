@@ -1,4 +1,3 @@
-
 const opt = require('../options.js') 
 const detection = require('./detection.js')
 const selectFrames = require('./selectFrames.js'); 
@@ -17,7 +16,7 @@ async function createCmd(dirName,cmd){
     opt.cmdOpt.dirName = dirName;
 
     //检测环境，并创建目录
-     await detection()
+    await detection()
 
     // 选择项目框架
     let frameObj = await selectFrames();
