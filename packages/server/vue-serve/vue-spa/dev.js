@@ -34,28 +34,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         ])
     ]
 })
-const devServerOptions  = {
-    clientLogLevel: 'warning',
-    contentBase: false,
-    // publicPath:"/",
-    hot:config.dev.hot,
-    // inline: true,
-    open: config.dev.autoOpenBower, // 启动后是否自动打开默认浏览器
-    //当出现编译器错误或警告时，在浏览器中显示全屏覆盖层,默认false
-    overlay: config.dev.useOverlay?{
-        warnings: false,
-        errors: true
-    }: false, 
-    proxy: config.dev.proxyTable, // 代理
-    compress: true, // 启用gzip压缩
-    quiet: true, // 是否禁止输出编译信息
-    historyApiFallback: true,
-}
+const devServerOptions = config.dev.devServer;
 
 // 执行webpackConfig, 外部可以配置webpackConfig
 config.public.webpackConfig(devWebpackConfig);
-// 对devserver 进行配置
-config.dev.devServeConfig(devServerOptions);
 
 
 module.exports = ()=>{

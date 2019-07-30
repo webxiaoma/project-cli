@@ -17,19 +17,34 @@ module.exports = merge(
        * @msg 路径配置
        */
       baseUrl: "/", // 公共基础路径
-      assetsDir: "static",   // 指定静态资源目录
+      assetsDir: "static", // 指定静态资源目录
       staticDir: "./public", // 指定公共资源目录（默认public）
 
       /**
        * @msg devServe 配置(webpack-dev-server  https://github.com/webpack/webpack-dev-server)
        **/
-      autoOpenBower: true, // 自动打开浏览器
-      port: 8080, // 配置启动端口号
-      useOverlay: true, // 错误全部覆盖显示
-      hot: true, // 模块热替换
-      proxyTable: {}, // 配置代理
+      devServer: {
+        clientLogLevel: "warning",
+        contentBase: false,
+        hot: 8080,
+        open: true, // 启动后是否自动打开默认浏览器
+        //当出现编译器错误或警告时，在浏览器中显示全屏覆盖层,默认false
+        overlay: {
+          warnings: false,
+          errors: true
+        },
+        proxy: {}, // 代理
+        compress: true, // 启用gzip压缩
+        quiet: true, // 是否禁止输出编译信息
+        historyApiFallback: true,
+        disableHostCheck: true //默认不检查hostname
+      },
+
+      /**
+       * @msg 其他配置
+       */
       systemErrorNotifier: true, //是否开启系统错误通知
-      devServeConfig(config){}, // devServe 服务
+
       /**
        * @msg source-map配置
        */
@@ -42,8 +57,8 @@ module.exports = merge(
        * @msg 路径配置
        */
       baseUrl: "./", // 公共基础路径
-      outputDir: "./dist",  // 指定输出目录
-      assetsDir: "static",   // 指定静态资源目录
+      outputDir: "./dist", // 指定输出目录
+      assetsDir: "static", // 指定静态资源目录
       staticDir: "./public", // 指定公共资源目录（默认public）
 
       /**
@@ -65,7 +80,7 @@ module.exports = merge(
 
       //启用gzip压缩
       isGzip: false, // 是否开启gzip压缩，默认关闭
-      gzipType: ["js", "css"], // 压缩的文件类型
+      gzipType: ["js", "css"] // 压缩的文件类型
     },
 
     // *****************公共配置*****************
@@ -84,16 +99,17 @@ module.exports = merge(
 
       // 使用cdn  使用 @web-pro/html-extend-webpack-plugin 插件 https://www.npmjs.com/package/@web-pro/html-extend-webpack-plugin
       useCdn: {
-        open: false,  // 默认关闭
-        cdn: { // 添加cdn
+        open: false, // 默认关闭
+        cdn: {
+          // 添加cdn
           js: [],
           css: []
         }
       },
       // 使用DllPlugin https://webpack.docschina.org/plugins/dll-plugin
-      useDll: {  
+      useDll: {
         open: false, // 默认关闭
-        entry: {} // 配置的打包库 
+        entry: {} // 配置的打包库
       },
 
       /**
