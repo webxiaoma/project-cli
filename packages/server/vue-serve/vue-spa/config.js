@@ -26,7 +26,8 @@ module.exports = merge(
       devServer: {
         clientLogLevel: "warning",
         contentBase: false,
-        hot: 8080,
+        port: 8080,
+        hot: true,
         open: true, // 启动后是否自动打开默认浏览器
         //当出现编译器错误或警告时，在浏览器中显示全屏覆盖层,默认false
         overlay: {
@@ -34,7 +35,6 @@ module.exports = merge(
           errors: true
         },
         proxy: {}, // 代理
-        compress: true, // 启用gzip压缩
         quiet: true, // 是否禁止输出编译信息
         historyApiFallback: true,
         disableHostCheck: true //默认不检查hostname

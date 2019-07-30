@@ -34,15 +34,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         ])
     ]
 })
-const devServerOptions = config.dev.devServer;
-
-// 执行webpackConfig, 外部可以配置webpackConfig
-config.public.webpackConfig(devWebpackConfig);
-
 
 module.exports = ()=>{
+   // devServer配置
+   const devServerOptions = config.dev.devServer;
+
+   // 执行webpackConfig, 外部可以配置webpackConfig
+   config.public.webpackConfig(devWebpackConfig);
+
     // 端口检测
-    lockIPHost.lockPort(config.dev.port).then(res => {
+    lockIPHost.lockPort(devServerOptions.port).then(res => {
+        devServerOptions.port = res.canUsePort;
         devWebpackConfig.plugins.push(
             new FriendlyErrorsPlugin({
                 compilationSuccessInfo: {
@@ -66,7 +68,6 @@ module.exports = ()=>{
         compiler.hooks.compile.tap("run", compilation => {
               console.log(chalk.green("构建中，不要着急..."));
         });
-
         webpackDevServer.addDevServerEntrypoints(devWebpackConfig, devServerOptions);
         const webpackServer = new webpackDevServer(compiler, devServerOptions);
         webpackServer.listen(res.canUsePort, "0.0.0.0");

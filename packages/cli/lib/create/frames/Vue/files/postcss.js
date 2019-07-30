@@ -12,9 +12,8 @@ module.exports = {
         autoprefixer: {},
         ${answerVue.platform === 2
         ?`"postcss-pxtorem": {
-            rootValue: 75,
+            rootValue: 37.5,
             propList: ['*'],
-            selectorBlackList:["el-"]
         }`:"placeholder-mxx"}
     }
 }

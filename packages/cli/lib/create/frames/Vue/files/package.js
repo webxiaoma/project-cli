@@ -15,6 +15,7 @@ let packageJsonStr =
   "author": "",
   "license": "ISC", 
   "dependencies": {
+    ${answerVue.platform === 2 ?'"amfe-flexible": "^2.2.1",' : "placeholder-mxx"}
     ${answerVue.useElementUl?'"element-ui": "^2.11.0",' : "placeholder-mxx"}
     ${answerVue.useVant?'"vant": "^2.0.9",' : "placeholder-mxx"}
     ${answerVue.request === 2?'"flyio": "^0.6.14",' : "placeholder-mxx"}

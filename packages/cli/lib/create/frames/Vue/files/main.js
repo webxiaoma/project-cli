@@ -8,6 +8,7 @@ ${answerVue.useRouter?"import router from './router';" : "placeholder-mxx"}
 ${answerVue.useVuex?"import store from './store';" : "placeholder-mxx"}
 import { apis } from "@/api"; 
 ${answerVue.request !== 0 ? "import { request } from '@/utils';" : "placeholder-mxx"}
+${answerVue.platform === 2 ?"import 'amfe-flexible';": "placeholder-mxx"}
 
 ${
   answerVue.useElementUl?
