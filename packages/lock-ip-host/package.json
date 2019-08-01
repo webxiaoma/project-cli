@@ -8,7 +8,7 @@
     "ip",
     "host",
     "lock-ip-host",
-    "@web-pro/loc-ip-host"
+    "@web-pro/lock-ip-host"
   ],
   "author": "webxiaoma",
   "repository": {
