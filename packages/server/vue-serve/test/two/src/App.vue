@@ -1122,6 +1122,11 @@ export default {
     }
   },
   created(){
+
+     let set6 = new Set([1, 2, 2, 3, 4, 3, 5])
+      console.log('distinct 1:', set6)
+
+
       if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) { // 手机端
          this.isPc = false;
          this.$root.isPc = false;
@@ -1132,14 +1137,14 @@ export default {
          this.swiperOptionOne.slidesPerView = 5;
       }
   },
-  mounted(){
-      setTimeout(()=>{
+  async mounted(){
+       await  setTimeout(()=>{
         this.lazyImg()
       },1)
   },
   methods:{
-      closeFloat(){
-          this.isShowFloat = false;
+       closeFloat(){
+        this.isShowFloat = false;
       },
       closeFloatForm(){
          this.isShowFloatForm = false;

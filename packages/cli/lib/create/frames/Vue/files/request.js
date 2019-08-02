@@ -61,6 +61,9 @@ function createRequestConfig(api,{method, headers,patterns,data}){
 
     ${answerVue.request === 2 ? 
     `// fly 请求配置
+    fly.config.headers = { 
+        "content-type": "application/json;charset=UTF-8"
+    }
     return fly.request(url,data,{
         baseURL:"",//请求基路径
         method: methods.toLowerCase(),
@@ -70,7 +73,7 @@ function createRequestConfig(api,{method, headers,patterns,data}){
     ` : "placeholder-mxx"}
 
     ${answerVue.request === 1 ?
-    `// fly 请求配置
+    `// axios 请求配置
     return  axios.request({
         baseURL:"",//请求基路径
         url: url,

@@ -27,7 +27,7 @@ module.exports = {
       style: true
     }, 'vant']
     `: "placeholder-mxx"}
-    
+    ["@babel/plugin-transform-runtime"] // 兼容ie
   ]
 };
 ` 

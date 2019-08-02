@@ -12,12 +12,11 @@ module.exports = (context, options = {}) => {
     [require('@babel/preset-env')]
   )
   
-
   // 支持vue jsx语法
-
   plugins.push(
     [require("babel-plugin-transform-vue-jsx")]
   )
+
 
   return {
     presets,
