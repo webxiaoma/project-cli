@@ -12,7 +12,6 @@ module.exports = {
         "styleLibraryName": "theme-chalk"
       }
     ],
-    ["@babel/plugin-transform-runtime"] // 兼容ie
   ]
 };
  

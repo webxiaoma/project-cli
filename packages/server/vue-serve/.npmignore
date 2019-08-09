@@ -10,6 +10,7 @@ yarn-error.log*
 /test/e2e/reports/
 /test/
 test.js
+yarn.lock
 
 # Editor directories and files
 .idea

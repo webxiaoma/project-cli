@@ -14,9 +14,7 @@ meta:
 - [中文文档](https://webxiaoma.github.io/project-cli/docs/blogs/babel/babel-preset-pro-vue)
 - [仓库地址](https://github.com/webxiaoma/project-cli/blob/master/packages/babel/babel-preset-pro-vue)
 
-## 当前版本
 
-`v1.0.4`
 
 ## 安装
 
@@ -37,8 +35,10 @@ yarn add @web-pro/babel-preset-pro-vue -D
 
 ```js
 "@babel/core": "^7.0.0-0",
+"@babel/polyfill": "^7.4.4",
 "@babel/preset-env": "^7.5.5",
 "babel-helper-vue-jsx-merge-props": "^2.0.3",
 "babel-plugin-syntax-jsx": "^6.18.0",
-"babel-plugin-transform-vue-jsx": "^3.7.0"
+"babel-plugin-transform-vue-jsx": "^3.7.0",
+"core-js": "^3.1.4"
 ```

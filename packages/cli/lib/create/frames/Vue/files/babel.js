@@ -7,7 +7,13 @@ let babelContentStr =
 module.exports = {
   presets: [
     [
-      "@web-pro/babel-preset-pro-vue",
+      "@web-pro/babel-preset-pro-vue",{
+          presetEnv: {
+              "modules": false,
+              "useBuiltIns": "usage",
+              "corejs": 3
+          }
+      }
     ]
   ],
   plugins: [

@@ -27,7 +27,7 @@ let packageJsonStr =
   "devDependencies": {
     ${answerVue.useElementUl || answerVue.useVant? '"babel-plugin-component": "^1.1.1",' : "placeholder-mxx"}
     ${answerVue.platform === 2 ? '"postcss-pxtorem":"^4.0.1",' : "placeholder-mxx"}
-    "@web-pro/babel-preset-pro-vue": "^1.0.4",
+    "@web-pro/babel-preset-pro-vue": "^1.0.6",
     "@web-pro/vue-server": "^1.0.4"
    
 
